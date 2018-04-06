@@ -9,16 +9,16 @@ namespace GMonitoria.Domain.Services
 {
     public class ServicesOfDomain : IServicesOfDomain
     {
-        private readonly IBaseRepository<Item> _repositorioBaseItem;
+        private readonly IBaseRepository<ProcessoSeletivo> _repositorioProcessoSeletivo;
 
-        public ServicesOfDomain(IBaseRepository<Item> _repositorio)
+        public ServicesOfDomain(IBaseRepository<ProcessoSeletivo> _repositorio)
         {
-            this._repositorioBaseItem = _repositorio;
+            this._repositorioProcessoSeletivo = _repositorio;
         }
 
-        public IEnumerable<Item> GetAllItems()
+        public bool Login(out string retorno)
         {
-            return _repositorioBaseItem.GetAll();
+            throw new NotImplementedException();
         }
     }
 }

@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GMonitoria.Domain.Interfaces.Domain
+namespace GMonitoria.Domain.Interfaces.Repositories
 {
-    public interface IServicesOfDomain
+    public interface IProfessorRepository : IBaseRepository<Professor>
     {
-        bool Login(out string retorno);
     }
 }

@@ -18,35 +18,30 @@ namespace GMonitoria.Infrastructure.Data.Contexts
     public class ContextDB : DbContext 
     {
         public string CurrentUserId { get; set; }
-        public virtual DbSet<Departament> Usuarios { get; set; }
-        public virtual DbSet<ItemType> PerfilUsuario { get; set; }
-        public virtual DbSet<Item> ModulosAcesso { get; set; }
          
         public ContextDB(DbContextOptions<ContextDB> options) : base(options)
         {}
-
-
-
+         
         protected override void OnModelCreating(ModelBuilder builder)
         { 
 
-            builder.Entity<Departament>(entity =>
-            {
-                entity.HasKey(e => e.departament_id);
-                entity.ToTable("Departament");
-            });
+            //builder.Entity<Departament>(entity =>
+            //{
+            //    entity.HasKey(e => e.departament_id);
+            //    entity.ToTable("Departament");
+            //});
 
-            builder.Entity<Item>(entity =>
-            {
-                entity.HasKey(e => e.item_guid);
-                entity.ToTable("Item");
-            });
+            //builder.Entity<Item>(entity =>
+            //{
+            //    entity.HasKey(e => e.item_guid);
+            //    entity.ToTable("Item");
+            //});
 
-            builder.Entity<ItemType>(entity =>
-            {
-                entity.HasKey(e => e.item_type_id);
-                entity.ToTable("ItemType");
-            });
+            //builder.Entity<ItemType>(entity =>
+            //{
+            //    entity.HasKey(e => e.item_type_id);
+            //    entity.ToTable("ItemType");
+            //});
              
             /*
             builder.ApplyConfiguration(new DepartamentMap());
@@ -80,12 +75,8 @@ namespace GMonitoria.Infrastructure.Data.Contexts
                 optionsBuilder.UseMySql("Server=localhost;User Id=root;Password=root;Database=sys");
             }
         } 
-
-
- 
     }
 }
-
 // dotnet ef DbContext scaffold "Server=localhost;User Id=root;Password=root;Database=GMonitoria_V1" "Pomelo.EntityFrameworkCore.MySql" -c GMonitoriaContext
 
 //dotnet ef migrations add InitialCreate
