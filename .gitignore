@@ -3,3 +3,16 @@
 ################################################################################
 
 /GMonitoria.WebAspnetMvc/obj
+/GMonitoria.WebAspnetMvc/bin/Debug/netcoreapp2.0
+/GMonitoria.WebApi/obj
+/GMonitoria.WebApi/bin/Debug/netcoreapp2.0
+/GMonitoria.Infrastructure.Data/obj
+/GMonitoria.Infrastructure.Data/GMonitoria.Infrastructure.Data.csproj.user
+/GMonitoria.Infrastructure.Data/bin/Debug/netcoreapp2.0
+/GMonitoria.Infrastructure/obj
+/GMonitoria.Infrastructure/bin/Debug/netcoreapp2.0
+/GMonitoria.Domain/obj
+/GMonitoria.Domain/bin/Debug/netcoreapp2.0
+/GMonitoria.DIP/obj
+/GMonitoria.DIP/bin/Debug/netcoreapp2.0
+*.lock
