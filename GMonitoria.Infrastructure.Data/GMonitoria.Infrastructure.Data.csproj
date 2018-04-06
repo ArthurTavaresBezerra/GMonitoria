@@ -26,5 +26,20 @@
   <ItemGroup>
     <Compile Remove="MyDbContext.cs" />
     <Compile Remove="SysConfig.cs" />
+    <Compile Remove="Aluno.cs" />
+    <Compile Remove="ComponenteCurricular.cs" />
+    <Compile Remove="Coordenador.cs" />
+    <Compile Remove="Curso.cs" />
+    <Compile Remove="HorarioAtendimento.cs" />
+    <Compile Remove="Inscricao.cs" />
+    <Compile Remove="InscricaoAceitacaoMonitoria.cs" />
+    <Compile Remove="InscricaoProva.cs" />
+    <Compile Remove="InscricaoResultado.cs" />
+    <Compile Remove="ProcessoSeletivo.cs" />
+    <Compile Remove="ProcessoSeletivoCurso.cs" />
+    <Compile Remove="Professor.cs" />
+    <Compile Remove="Prova.cs" />
+    <Compile Remove="Vaga.cs" />
+    <Compile Remove="VagaRequisicao.cs" />
   </ItemGroup>
 </Project>

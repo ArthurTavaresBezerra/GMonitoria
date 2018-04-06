@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GMonitoria.Infrastructure.Data.Repositories
 {
-    public class InscricaoRepository : BaseRepository<Inscricao>, IInscricaoRepository
+    public class InscricaoRepository : BaseRepository<Domain.Entities.Inscricao>, IInscricaoRepository
     {
         public InscricaoRepository(GMonitoriaContext context) : base(context) { }
     }

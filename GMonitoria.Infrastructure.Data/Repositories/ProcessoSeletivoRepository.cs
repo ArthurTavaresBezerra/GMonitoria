@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GMonitoria.Infrastructure.Data.Repositories
 {
-    public class ProcessoSeletivoRepository : BaseRepository<ProcessoSeletivo>, IProcessoSeletivoRepository
+    public class ProcessoSeletivoRepository : BaseRepository<Domain.Entities.ProcessoSeletivo>, IProcessoSeletivoRepository
     {
         public ProcessoSeletivoRepository (GMonitoriaContext context) : base (context)
         { } 

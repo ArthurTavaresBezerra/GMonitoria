@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GMonitoria.Domain.Interfaces.Repositories
 {
-    public interface IHorarioAtendimentoRepository : BaseRepository<HorarioAtendimento>
+    public interface IHorarioAtendimentoRepository : IBaseRepository<HorarioAtendimento>
     {
     }
 }

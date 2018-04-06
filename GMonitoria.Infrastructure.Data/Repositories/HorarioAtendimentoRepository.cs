@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GMonitoria.Infrastructure.Data.Repositories
 {
-    public class HorarioAtendimentoRepository : BaseRepository<HorarioAtendimento>, IHorarioAtendimentoRepository
+    public class HorarioAtendimentoRepository : BaseRepository<Domain.Entities.HorarioAtendimento>, IHorarioAtendimentoRepository
     {
         public HorarioAtendimentoRepository(GMonitoriaContext context) : base(context) { }
     }

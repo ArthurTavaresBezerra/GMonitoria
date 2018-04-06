@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GMonitoria.Infrastructure.Data.Repositories
 {
-    public class ProcessoSeletivoCursoRepository : BaseRepository<ProcessoSeletivoCurso>, IProcessoSeletivoCursoRepository
+    public class ProcessoSeletivoCursoRepository : BaseRepository<Domain.Entities.ProcessoSeletivoCurso>, IProcessoSeletivoCursoRepository
     {
         public ProcessoSeletivoCursoRepository(GMonitoriaContext context) : base(context) { }
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GMonitoria.Domain.Interfaces.Repositories
 {
-    public interface ICoordenadorRepository : BaseRepository<Coordenador>
+    public interface ICoordenadorRepository : IBaseRepository<Coordenador>
     {
     }
 }

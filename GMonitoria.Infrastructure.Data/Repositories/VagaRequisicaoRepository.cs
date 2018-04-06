@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GMonitoria.Domain.Interfaces.Repositories
 {
-    public interface IVagaRequisicaoRepository : BaseRepository<VagaRequisicao>
+    public interface IVagaRequisicaoRepository : IBaseRepository<VagaRequisicao>
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GMonitoria.Infrastructure.Data.Repositories
 {
-    public class VagaRepository : BaseRepository<Vaga>, IVagaRepository
+    public class VagaRepository : BaseRepository<Domain.Entities.Vaga>, IVagaRepository
     {
         public VagaRepository(GMonitoriaContext context) : base(context) { }
     }

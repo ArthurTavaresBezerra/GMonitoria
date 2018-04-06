@@ -6,20 +6,29 @@ using GMonitoria.Domain.Entities;
 using GMonitoria.Domain.Entities.patterns;
 using GMonitoria.Infrastructure.Data.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GMonitoria.Infrastructure.Data.Contexts
 {
-    public partial class GMonitoriaContext : DbContext
+    public partial class GMonitoriaContext : DbContext, IDesignTimeDbContextFactory<GMonitoriaContext>
     {
+        public virtual DbSet<Aluno> Aluno { get; set; }
         public virtual DbSet<ComponenteCurricular> ComponenteCurricular { get; set; }
+        public virtual DbSet<Coordenador> Coordenador { get; set; }
         public virtual DbSet<Curso> Curso { get; set; }
+        public virtual DbSet<HorarioAtendimento> HorarioAtendimento { get; set; }
+        public virtual DbSet<Inscricao> Inscricao { get; set; }
+        public virtual DbSet<InscricaoAceitacaoMonitoria> InscricaoAceitacaoMonitoria { get; set; }
+        public virtual DbSet<InscricaoProva> InscricaoProva { get; set; }
+        public virtual DbSet<InscricaoResultado> InscricaoResultado { get; set; } 
         public virtual DbSet<ProcessoSeletivo> ProcessoSeletivo { get; set; }
         public virtual DbSet<ProcessoSeletivoCurso> ProcessoSeletivoCurso { get; set; }
         public virtual DbSet<Professor> Professor { get; set; }
         public virtual DbSet<Prova> Prova { get; set; }
         public virtual DbSet<Vaga> Vaga { get; set; }
         public virtual DbSet<VagaRequisicao> VagaRequisicao { get; set; }
+
         public string CurrentUserId { get; set; }
 
         public GMonitoriaContext(DbContextOptions options) : base(options) {}
@@ -106,5 +115,10 @@ namespace GMonitoria.Infrastructure.Data.Contexts
             }
         }
 
+        public GMonitoriaContext CreateDbContext(string[] args)
+        {
+            DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
+            return new GMonitoriaContext(builder.Options);
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GMonitoria.Domain.Interfaces.Repositories
 {
-    public interface IInscricaoAceitacaoMonitoriaRepository : BaseRepository<InscricaoAceitacaoMonitoria>
+    public interface IInscricaoAceitacaoMonitoriaRepository : IBaseRepository<InscricaoAceitacaoMonitoria>
     {
     }
 }

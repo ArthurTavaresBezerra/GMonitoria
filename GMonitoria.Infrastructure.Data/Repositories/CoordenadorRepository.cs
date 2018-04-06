@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GMonitoria.Infrastructure.Data.Repositories
 {
-    public class CoordenadorRepository : BaseRepository<Coordenador>, ICoordenadorRepository
+    public class CoordenadorRepository : BaseRepository<Domain.Entities.Coordenador>, ICoordenadorRepository
     {
         public CoordenadorRepository(GMonitoriaContext context) : base(context) { }
     }

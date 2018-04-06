@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GMonitoria.Infrastructure.Data.Repositories
 {
-    public class ProfessorRepository : BaseRepository<Professor>, IProfessorRepository
+    public class ProfessorRepository : BaseRepository<Domain.Entities.Professor>, IProfessorRepository
     {
         public ProfessorRepository(GMonitoriaContext context) : base(context) { }
     }

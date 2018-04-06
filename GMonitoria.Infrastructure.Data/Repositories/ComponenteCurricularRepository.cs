@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GMonitoria.Infrastructure.Data.Repositories
 {
-    public class ComponenteCurricularRepository : BaseRepository<ComponenteCurricular>, IComponenteCurricularRepository
+    public class ComponenteCurricularRepository : BaseRepository<Domain.Entities.ComponenteCurricular>, IComponenteCurricularRepository
     {
         public ComponenteCurricularRepository(GMonitoriaContext context) : base(context) { }
     }
