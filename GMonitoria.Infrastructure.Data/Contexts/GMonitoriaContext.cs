@@ -13,7 +13,7 @@ namespace GMonitoria.Infrastructure.Data.Contexts
 {
     public partial class GMonitoriaContext : DbContext, IDesignTimeDbContextFactory<GMonitoriaContext>
     {
-        public virtual DbSet<GMonitoria.Domain.Entities.Aluno> Alunos{ get; set; }
+        public virtual DbSet<GMonitoria.Domain.Entities.Aluno> Aluno{ get; set; }
         public virtual DbSet<Domain.Entities.ComponenteCurricular> ComponenteCurricular { get; set; }
         public virtual DbSet<Domain.Entities.Coordenador> Coordenador { get; set; }
         public virtual DbSet<Domain.Entities.Curso> Curso { get; set; }
@@ -42,6 +42,8 @@ namespace GMonitoria.Infrastructure.Data.Contexts
                 optionsBuilder.UseMySql("Server=localhost;User Id=root;Password=root;Database=GMonitoria_V1");
             }
         }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

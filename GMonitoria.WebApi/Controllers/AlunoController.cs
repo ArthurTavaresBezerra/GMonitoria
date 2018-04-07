@@ -25,7 +25,7 @@ namespace GMonitoria.WebApi.Controllers
         [HttpGet]
         public IEnumerable<Aluno> GetAlunos()
         {
-            return _context.Alunos;
+            return _context.Aluno;
         }
 
         // GET: api/Aluno/5
@@ -37,7 +37,7 @@ namespace GMonitoria.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var aluno = await _context.Alunos.SingleOrDefaultAsync(m => m.Matricula == id);
+            var aluno = await _context.Aluno.SingleOrDefaultAsync(m => m.Matricula == id);
 
             if (aluno == null)
             {
@@ -91,7 +91,7 @@ namespace GMonitoria.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Alunos.Add(aluno);
+            _context.Aluno.Add(aluno);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAluno", new { id = aluno.Matricula }, aluno);
@@ -106,13 +106,13 @@ namespace GMonitoria.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var aluno = await _context.Alunos.SingleOrDefaultAsync(m => m.Matricula == id);
+            var aluno = await _context.Aluno.SingleOrDefaultAsync(m => m.Matricula == id);
             if (aluno == null)
             {
                 return NotFound();
             }
 
-            _context.Alunos.Remove(aluno);
+            _context.Aluno.Remove(aluno);
             await _context.SaveChangesAsync();
 
             return Ok(aluno);
@@ -120,7 +120,7 @@ namespace GMonitoria.WebApi.Controllers
 
         private bool AlunoExists(string id)
         {
-            return _context.Alunos.Any(e => e.Matricula == id);
+            return _context.Aluno.Any(e => e.Matricula == id);
         }
     }
 }

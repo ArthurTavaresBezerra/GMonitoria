@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using GMonitoria.DIP;
+using GMonitoria.Infrastructure.Data.Migrations;
 
 namespace GMonitoria.WebApi
 {
@@ -24,11 +25,12 @@ namespace GMonitoria.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, GMonitoriaInitializer initializer)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                initializer.Seed(); 
             }
 
             app.UseMvc();
