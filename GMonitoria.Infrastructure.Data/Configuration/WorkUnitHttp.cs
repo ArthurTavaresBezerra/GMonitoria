@@ -8,7 +8,7 @@ namespace GMonitoria.Infrastructure.Data.Configuration
 {
     public class WorkUnitHttp : WorkUnitEF
     {
-        public WorkUnitHttp(ContextDB context, IHttpContextAccessor httpAccessor) : base(context)
+        public WorkUnitHttp(GMonitoriaContext context, IHttpContextAccessor httpAccessor) : base(context)
         {
             context.CurrentUserId = httpAccessor.HttpContext.User.FindFirst("sub")?.Value?.Trim();
         }

@@ -6,9 +6,9 @@ namespace GMonitoria.Infrastructure.Data.Configuration
 {
     public class WorkUnitEF : IWorkUnit
     {
-        private ContextDB _contexto;
+        private GMonitoriaContext _contexto;
 
-        public WorkUnitEF(ContextDB contexto)
+        public WorkUnitEF(GMonitoriaContext contexto)
         {
             this._contexto = contexto;
         }

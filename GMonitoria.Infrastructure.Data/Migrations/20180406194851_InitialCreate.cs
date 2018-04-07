@@ -6,6 +6,9 @@ namespace GMonitoria.Infrastructure.Data.Migrations
 {
     public partial class InitialCreate : Migration
     {
+        public void Public_Up(MigrationBuilder migrationBuilder) { Up(migrationBuilder); }
+        public void Public_Down(MigrationBuilder migrationBuilder) { Down(migrationBuilder); }
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(

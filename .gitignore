@@ -16,3 +16,6 @@
 /GMonitoria.DIP/obj
 /GMonitoria.DIP/bin/Debug/netcoreapp2.0
 *.lock
+/GMonitoria.WebApi/GMonitoria.WebApi.csproj.user
+/Angular5TF1
+/.vs/config

@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
-using GMonitoria.Domain.Entities;
+using System.Threading.Tasks; 
 using GMonitoria.Domain.Entities.patterns;
 using GMonitoria.Infrastructure.Data.Configuration;
 using Microsoft.EntityFrameworkCore;
@@ -13,25 +13,27 @@ namespace GMonitoria.Infrastructure.Data.Contexts
 {
     public partial class GMonitoriaContext : DbContext, IDesignTimeDbContextFactory<GMonitoriaContext>
     {
-        public virtual DbSet<Aluno> Aluno { get; set; }
-        public virtual DbSet<ComponenteCurricular> ComponenteCurricular { get; set; }
-        public virtual DbSet<Coordenador> Coordenador { get; set; }
-        public virtual DbSet<Curso> Curso { get; set; }
-        public virtual DbSet<HorarioAtendimento> HorarioAtendimento { get; set; }
-        public virtual DbSet<Inscricao> Inscricao { get; set; }
-        public virtual DbSet<InscricaoAceitacaoMonitoria> InscricaoAceitacaoMonitoria { get; set; }
-        public virtual DbSet<InscricaoProva> InscricaoProva { get; set; }
-        public virtual DbSet<InscricaoResultado> InscricaoResultado { get; set; } 
-        public virtual DbSet<ProcessoSeletivo> ProcessoSeletivo { get; set; }
-        public virtual DbSet<ProcessoSeletivoCurso> ProcessoSeletivoCurso { get; set; }
-        public virtual DbSet<Professor> Professor { get; set; }
-        public virtual DbSet<Prova> Prova { get; set; }
-        public virtual DbSet<Vaga> Vaga { get; set; }
-        public virtual DbSet<VagaRequisicao> VagaRequisicao { get; set; }
+        public virtual DbSet<GMonitoria.Domain.Entities.Aluno> Alunos{ get; set; }
+        public virtual DbSet<Domain.Entities.ComponenteCurricular> ComponenteCurricular { get; set; }
+        public virtual DbSet<Domain.Entities.Coordenador> Coordenador { get; set; }
+        public virtual DbSet<Domain.Entities.Curso> Curso { get; set; }
+        public virtual DbSet<Domain.Entities.HorarioAtendimento> HorarioAtendimento { get; set; }
+        public virtual DbSet<Domain.Entities.Inscricao> Inscricao { get; set; }
+        public virtual DbSet<Domain.Entities.InscricaoAceitacaoMonitoria> InscricaoAceitacaoMonitoria { get; set; }
+        public virtual DbSet<Domain.Entities.InscricaoProva> InscricaoProva { get; set; }
+        public virtual DbSet<Domain.Entities.InscricaoResultado> InscricaoResultado { get; set; } 
+        public virtual DbSet<Domain.Entities.ProcessoSeletivo> ProcessoSeletivo { get; set; }
+        public virtual DbSet<Domain.Entities.ProcessoSeletivoCurso> ProcessoSeletivoCurso { get; set; }
+        public virtual DbSet<Domain.Entities.Professor> Professor { get; set; }
+        public virtual DbSet<Domain.Entities.Prova> Prova { get; set; }
+        public virtual DbSet<Domain.Entities.Vaga> Vaga { get; set; }
+        public virtual DbSet<Domain.Entities.VagaRequisicao> VagaRequisicao { get; set; }
 
         public string CurrentUserId { get; set; }
 
-        public GMonitoriaContext(DbContextOptions options) : base(options) {}
+        public GMonitoriaContext() : base() { }
+
+        public GMonitoriaContext(DbContextOptions options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -120,5 +122,14 @@ namespace GMonitoria.Infrastructure.Data.Contexts
             DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
             return new GMonitoriaContext(builder.Options);
         }
+         
+        public static void Main(string[] args)
+        { 
+        }
     }
 }
+
+//dotnet ef DbContext scaffold "Server=localhost;User Id=root;Password=root;Database=GMonitoria_V1" "Pomelo.EntityFrameworkCore.MySql" -c GMonitoriaContext
+//dotnet ef migrations add InitialCreate --context GMonitoriaContextGenerate
+//dotnet ef migrations add InitialMigration --context GMonitoriaContextGenerate
+//dotnet ef migrations update --context GMonitoriaContextGenerate 

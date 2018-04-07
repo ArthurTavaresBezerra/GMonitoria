@@ -12,17 +12,16 @@ using System;
 namespace GMonitoria.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(GMonitoriaContext))]
-    [Migration("20180406194851_InitialCreate")]
-    partial class InitialCreate
+    partial class GMonitoriaContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011");
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Aluno", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Aluno", b =>
                 {
                     b.Property<string>("Matricula")
                         .ValueGeneratedOnAdd()
@@ -39,7 +38,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("ALUNO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.ComponenteCurricular", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.ComponenteCurricular", b =>
                 {
                     b.Property<string>("ComponenteCurricularId")
                         .ValueGeneratedOnAdd()
@@ -72,7 +71,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("COMPONENTE_CURRICULAR");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Coordenador", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Coordenador", b =>
                 {
                     b.Property<string>("CoordenadorId")
                         .ValueGeneratedOnAdd()
@@ -97,7 +96,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("COORDENADOR");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Curso", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Curso", b =>
                 {
                     b.Property<string>("CursoId")
                         .ValueGeneratedOnAdd()
@@ -114,7 +113,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("CURSO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.HorarioAtendimento", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.HorarioAtendimento", b =>
                 {
                     b.Property<string>("HorarioAtendimentoId")
                         .ValueGeneratedOnAdd()
@@ -156,7 +155,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("HORARIO_ATENDIMENTO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Inscricao", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Inscricao", b =>
                 {
                     b.Property<string>("InscricaoId")
                         .ValueGeneratedOnAdd()
@@ -194,7 +193,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("INSCRICAO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.InscricaoAceitacaoMonitoria", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.InscricaoAceitacaoMonitoria", b =>
                 {
                     b.Property<string>("InscricaoAceitacaoMonitoriaId")
                         .ValueGeneratedOnAdd()
@@ -222,7 +221,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("INSCRICAO_ACEITACAO_MONITORIA");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.InscricaoProva", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.InscricaoProva", b =>
                 {
                     b.Property<string>("InscricaoProvaId")
                         .ValueGeneratedOnAdd()
@@ -253,7 +252,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("INSCRICAO_PROVA");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.InscricaoResultado", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.InscricaoResultado", b =>
                 {
                     b.Property<string>("InscricaoResultadoId")
                         .ValueGeneratedOnAdd()
@@ -277,7 +276,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("INSCRICAO_RESULTADO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.ProcessoSeletivo", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.ProcessoSeletivo", b =>
                 {
                     b.Property<string>("ProcessoSeletivoId")
                         .ValueGeneratedOnAdd()
@@ -306,7 +305,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("PROCESSO_SELETIVO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.ProcessoSeletivoCurso", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.ProcessoSeletivoCurso", b =>
                 {
                     b.Property<string>("ProcessoSeletivoCursoId")
                         .ValueGeneratedOnAdd()
@@ -339,7 +338,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("PROCESSO_SELETIVO_CURSO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Professor", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Professor", b =>
                 {
                     b.Property<string>("ProfessorId")
                         .ValueGeneratedOnAdd()
@@ -356,7 +355,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("PROFESSOR");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Prova", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Prova", b =>
                 {
                     b.Property<string>("ProvaId")
                         .ValueGeneratedOnAdd()
@@ -397,7 +396,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("PROVA");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Vaga", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Vaga", b =>
                 {
                     b.Property<string>("VagaId")
                         .ValueGeneratedOnAdd()
@@ -425,7 +424,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("VAGA");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.VagaRequisicao", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.VagaRequisicao", b =>
                 {
                     b.Property<string>("VagaRequisicaoId")
                         .ValueGeneratedOnAdd()
@@ -481,124 +480,124 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     b.ToTable("VAGA_REQUISICAO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.ComponenteCurricular", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.ComponenteCurricular", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.Curso", "Curso")
+                    b.HasOne("GMonitoria.Domain.Entities.Curso", "Curso")
                         .WithMany("ComponenteCurricular")
                         .HasForeignKey("CursoId")
                         .HasConstraintName("FK_COMPONENTE_CURRICULAR_CURSO");
 
-                    b.HasOne("GMonitoria.Infrastructure.Data.Professor", "Professor")
+                    b.HasOne("GMonitoria.Domain.Entities.Professor", "Professor")
                         .WithMany("ComponenteCurricular")
                         .HasForeignKey("ProfessorId")
                         .HasConstraintName("FK_COMPONENTE_CURRICULAR_PROFESSOR");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Coordenador", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Coordenador", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.Curso", "Curso")
+                    b.HasOne("GMonitoria.Domain.Entities.Curso", "Curso")
                         .WithMany("Coordenador")
                         .HasForeignKey("CursoId")
                         .HasConstraintName("FK_COORDENADOR_CURRICULAR_CURSO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.HorarioAtendimento", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.HorarioAtendimento", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.Inscricao", "Inscricao")
+                    b.HasOne("GMonitoria.Domain.Entities.Inscricao", "Inscricao")
                         .WithMany("HorarioAtendimento")
                         .HasForeignKey("InscricaoId")
                         .HasConstraintName("FK_HORARIO_ATENDIMENTO_INSCRICAO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Inscricao", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Inscricao", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.Aluno", "MatriculaNavigation")
+                    b.HasOne("GMonitoria.Domain.Entities.Aluno", "MatriculaNavigation")
                         .WithMany("Inscricao")
                         .HasForeignKey("Matricula")
                         .HasConstraintName("FK_INSCRICAO_ALUNO");
 
-                    b.HasOne("GMonitoria.Infrastructure.Data.VagaRequisicao", "VagaRequisicao")
+                    b.HasOne("GMonitoria.Domain.Entities.VagaRequisicao", "VagaRequisicao")
                         .WithMany("Inscricao")
                         .HasForeignKey("VagaRequisicaoId")
                         .HasConstraintName("FK_INSCRICAO_VAGA_REQUISICAO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.InscricaoAceitacaoMonitoria", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.InscricaoAceitacaoMonitoria", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.Inscricao", "Inscricao")
+                    b.HasOne("GMonitoria.Domain.Entities.Inscricao", "Inscricao")
                         .WithMany("InscricaoAceitacaoMonitoria")
                         .HasForeignKey("InscricaoId")
                         .HasConstraintName("FK_INSCRICAO_ACEITACAO_MONITORIA_INSCRICAO");
 
-                    b.HasOne("GMonitoria.Infrastructure.Data.Vaga", "Vaga")
+                    b.HasOne("GMonitoria.Domain.Entities.Vaga", "Vaga")
                         .WithMany("InscricaoAceitacaoMonitoria")
                         .HasForeignKey("VagaId")
                         .HasConstraintName("FK_INSCRICAO_ACEITACAO_MONITORIA_VAGA");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.InscricaoProva", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.InscricaoProva", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.Inscricao", "Inscricao")
+                    b.HasOne("GMonitoria.Domain.Entities.Inscricao", "Inscricao")
                         .WithMany("InscricaoProva")
                         .HasForeignKey("InscricaoId")
                         .HasConstraintName("FK_INSCRICAO_PROVA_INSCRICAO");
 
-                    b.HasOne("GMonitoria.Infrastructure.Data.Prova", "Prova")
+                    b.HasOne("GMonitoria.Domain.Entities.Prova", "Prova")
                         .WithMany("InscricaoProva")
                         .HasForeignKey("ProvaId")
                         .HasConstraintName("FK_INSCRICAO_PROVA_PROVA");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.InscricaoResultado", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.InscricaoResultado", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.Inscricao", "Inscricao")
+                    b.HasOne("GMonitoria.Domain.Entities.Inscricao", "Inscricao")
                         .WithMany("InscricaoResultado")
                         .HasForeignKey("InscricaoId")
                         .HasConstraintName("FK_INSCRICAO_RESULTADO_INSCRICAO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.ProcessoSeletivoCurso", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.ProcessoSeletivoCurso", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.Curso", "Curso")
+                    b.HasOne("GMonitoria.Domain.Entities.Curso", "Curso")
                         .WithMany("ProcessoSeletivoCurso")
                         .HasForeignKey("CursoId")
                         .HasConstraintName("FK_PROCESSO_SELETIVO_CURSO_CURSO");
 
-                    b.HasOne("GMonitoria.Infrastructure.Data.ProcessoSeletivo", "ProcessoSeletivo")
+                    b.HasOne("GMonitoria.Domain.Entities.ProcessoSeletivo", "ProcessoSeletivo")
                         .WithMany("ProcessoSeletivoCurso")
                         .HasForeignKey("ProcessoSeletivoId")
                         .HasConstraintName("FK_PROCESSO_SELETIVO_CURSO_PROCESSO_SELETIVO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Prova", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Prova", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.VagaRequisicao", "VagaRequisicao")
+                    b.HasOne("GMonitoria.Domain.Entities.VagaRequisicao", "VagaRequisicao")
                         .WithMany("Prova")
                         .HasForeignKey("VagaRequisicaoId")
                         .HasConstraintName("FK_PROVA_VAGA_REQUISICAO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.Vaga", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.Vaga", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.VagaRequisicao", "VagaRequisicao")
+                    b.HasOne("GMonitoria.Domain.Entities.VagaRequisicao", "VagaRequisicao")
                         .WithMany("Vaga")
                         .HasForeignKey("VagaRequisicaoId")
                         .HasConstraintName("FK_VAGA_VAGA_REQUISICAO");
                 });
 
-            modelBuilder.Entity("GMonitoria.Infrastructure.Data.VagaRequisicao", b =>
+            modelBuilder.Entity("GMonitoria.Domain.Entities.VagaRequisicao", b =>
                 {
-                    b.HasOne("GMonitoria.Infrastructure.Data.ComponenteCurricular", "ComponenteCurricular")
+                    b.HasOne("GMonitoria.Domain.Entities.ComponenteCurricular", "ComponenteCurricular")
                         .WithMany("VagaRequisicao")
                         .HasForeignKey("ComponenteCurricularId")
                         .HasConstraintName("FK_VAGA_REQUISICAO_COMPONENTE_CURRICULAR");
 
-                    b.HasOne("GMonitoria.Infrastructure.Data.ProcessoSeletivoCurso", "ProcessoSeletivoCurso")
+                    b.HasOne("GMonitoria.Domain.Entities.ProcessoSeletivoCurso", "ProcessoSeletivoCurso")
                         .WithMany("VagaRequisicao")
                         .HasForeignKey("ProcessoSeletivoCursoId")
                         .HasConstraintName("FK_VAGA_REQUISICAO_PROCESSO_SELETIVO_CURSO");
 
-                    b.HasOne("GMonitoria.Infrastructure.Data.Professor", "Professor")
+                    b.HasOne("GMonitoria.Domain.Entities.Professor", "Professor")
                         .WithMany("VagaRequisicao")
                         .HasForeignKey("ProfessorId")
                         .HasConstraintName("FK_VAGA_REQUISICAO_PROFESSOR");

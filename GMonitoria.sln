@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMonitoria.Domain", "GMonitoria.Domain\GMonitoria.Domain.csproj", "{0222463D-D953-41EF-9D7D-5851F50DF280}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMonitoria.Domain", "GMonitoria.Domain\GMonitoria.Domain.csproj", "{0222463D-D953-41EF-9D7D-5851F50DF280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMonitoria.Infrastructure", "GMonitoria.Infrastructure\GMonitoria.Infrastructure.csproj", "{2F4E3331-4EFF-43AB-91CB-1E23FA70EF4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMonitoria.Infrastructure", "GMonitoria.Infrastructure\GMonitoria.Infrastructure.csproj", "{2F4E3331-4EFF-43AB-91CB-1E23FA70EF4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMonitoria.DIP", "GMonitoria.DIP\GMonitoria.DIP.csproj", "{B6D731BB-A62B-48AB-984A-8510B659673C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMonitoria.DIP", "GMonitoria.DIP\GMonitoria.DIP.csproj", "{B6D731BB-A62B-48AB-984A-8510B659673C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMonitoria.WebApi", "GMonitoria.WebApi\GMonitoria.WebApi.csproj", "{EC2BCF46-8FD7-4417-A930-6493BD500AEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMonitoria.WebApi", "GMonitoria.WebApi\GMonitoria.WebApi.csproj", "{EC2BCF46-8FD7-4417-A930-6493BD500AEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMonitoria.WebAspnetMvc", "GMonitoria.WebAspnetMvc\GMonitoria.WebAspnetMvc.csproj", "{46BF826A-B2D1-4643-AFFB-C71FAC4A8CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMonitoria.WebAspnetMvc", "GMonitoria.WebAspnetMvc\GMonitoria.WebAspnetMvc.csproj", "{46BF826A-B2D1-4643-AFFB-C71FAC4A8CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMonitoria.Infrastructure.Data", "GMonitoria.Infrastructure.Data\GMonitoria.Infrastructure.Data.csproj", "{10CFF624-2A95-4D12-91A3-2D5CB1E24FDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMonitoria.Infrastructure.Data", "GMonitoria.Infrastructure.Data\GMonitoria.Infrastructure.Data.csproj", "{10CFF624-2A95-4D12-91A3-2D5CB1E24FDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular5TF1", "Angular5TF1\Angular5TF1.csproj", "{CC843E1B-00B8-46DA-834B-52F593153E26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -175,6 +177,30 @@ Global
 		{10CFF624-2A95-4D12-91A3-2D5CB1E24FDE}.Release|Windows-x64.Build.0 = Release|Any CPU
 		{10CFF624-2A95-4D12-91A3-2D5CB1E24FDE}.Release|Windows-x86.ActiveCfg = Release|Any CPU
 		{10CFF624-2A95-4D12-91A3-2D5CB1E24FDE}.Release|Windows-x86.Build.0 = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Android.ActiveCfg = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Android.Build.0 = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|iOS.ActiveCfg = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|iOS.Build.0 = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Windows-ARM.ActiveCfg = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Windows-ARM.Build.0 = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Windows-x64.ActiveCfg = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Windows-x64.Build.0 = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Windows-x86.ActiveCfg = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Debug|Windows-x86.Build.0 = Debug|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Android.ActiveCfg = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Android.Build.0 = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|iOS.ActiveCfg = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|iOS.Build.0 = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Windows-ARM.ActiveCfg = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Windows-ARM.Build.0 = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Windows-x64.ActiveCfg = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Windows-x64.Build.0 = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Windows-x86.ActiveCfg = Release|Any CPU
+		{CC843E1B-00B8-46DA-834B-52F593153E26}.Release|Windows-x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
