@@ -19,6 +19,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PageMainStudentComponent } from './page-main-student/page-main-student.component';
 
 import {RouterModule, Routes } from '@angular/router';
+import { PageMainCollaboratorComponent } from './page-main-collaborator/page-main-collaborator.component';
 
 const appRoutes: Routes = [
   {
@@ -26,9 +27,9 @@ const appRoutes: Routes = [
     component: PageMainStudentComponent,
     data: { title: 'Heroes List' }
   },{
-    path: 'heroes',
-    component: PageMainStudentComponent,
-    data: { title: 'Heroes List' }
+    path: 'collaborator',
+    component: PageMainCollaboratorComponent,
+    
   },
   { path: '',
     component: LoginComponent,
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
   declarations: [ 
     AppComponent,
     LoginComponent,
-    PageMainStudentComponent
+    PageMainStudentComponent,
+    PageMainCollaboratorComponent
   ],
   imports: [
     BrowserModule,
