@@ -1,13 +1,25 @@
 
 import {CdkTableModule} from '@angular/cdk/table';
+import {A11yModule} from '@angular/cdk/a11y';
 import {HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
+import {NgModule, Component, Inject} from '@angular/core'; 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
+
+import { UserService } from './shared/user.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { UserComponent } from './user/user.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { HomeComponent } from './home/home.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor'; 
+import { DialogGeral } from './shared/dialogs/dialog-geral';
 
 /** Materal Angular */
 import {
@@ -18,7 +30,8 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
-  MatDialogModule,
+  /*Dialog*/ 
+  MatDialogModule,  
   MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
@@ -48,6 +61,7 @@ import {
 @NgModule({
   exports: [
     CdkTableModule,
+    A11yModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -91,40 +105,29 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({ exports: [BsDropdownModule, TooltipModule, ModalModule]})  export class NgxBootstrapModule {}
-/** MdbBoots */
+/** MdbBootstap */
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
   
-
-import {RouterModule, Routes } from '@angular/router';
+//Routes
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
 
 import { AppComponent } from './app.component';
 import { PageMainCollaboratorComponent } from './page-main-collaborator/page-main-collaborator.component';
 import { PageMainStudentComponent } from './page-main-student/page-main-student.component';
 import { LoginComponent } from './login/login.component';
-
-
-const appRoutes: Routes = [
-  { path: '',
-    component: LoginComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'page',
-    component: PageMainStudentComponent,
-    data: { title: 'Heroes List' }
-  },{
-    path: 'collaborator',
-    component: PageMainCollaboratorComponent
-  },
-  { path: '**', component: LoginComponent }
-];
-
+ 
 @NgModule({
   declarations: [  
     AppComponent,
+    SignInComponent,
+    SignUpComponent,
+    UserComponent,
+    HomeComponent,
     LoginComponent,
-    PageMainStudentComponent,
-    PageMainCollaboratorComponent
+    PageMainStudentComponent, 
+    PageMainCollaboratorComponent,
+    DialogGeral
   ],
   imports: [
     BrowserModule,
@@ -132,20 +135,30 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     HttpClientModule,
-    MaterialModule,
+    MaterialModule, 
     MatNativeDateModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
     NgxBootstrapModule,
-    RouterModule.forRoot(appRoutes,{ enableTracing: true }), // <-- debugging purposes only
-    
+    ToastrModule.forRoot(),
+    RouterModule.forRoot(appRoutes,{ enableTracing: true }) // <-- debugging purposes only 
     //BsDropdownModule.forRoot(),TooltipModule.forRoot(),ModalModule.forRoot(),MDBBootstrapModule.forRoot()
-
-
   ],
-  providers: [],
+  entryComponents: [
+    DialogGeral
+  ],
+  providers: [
+    UserService, 
+    AuthGuard,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
  
 platformBrowserDynamic().bootstrapModule(AppModule);
+ 

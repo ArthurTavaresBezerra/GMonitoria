@@ -1,0 +1,60 @@
+ 
+ 
+<div class="container  ">
+    <div class="row">
+      <mat-card class="card-login">
+        <mat-card-header>
+          <div mat-card-avatar class="card-login-header-image logo flex-center">GMo</div>
+          <mat-card-title style="margin-bottom: 6px;" >GMonitoria</mat-card-title>
+          <mat-card-subtitle>Informatização dos processos de monitoria</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content> 
+          <div style="height: auto">
+              <div class="flex-center flex-column  divLogin">
+                <h1 class="animated fadeIn mb-4">GMonitoria</h1> 
+                <h5 class="animated fadeIn mb-3">Informatizando processos de monitoria</h5>  
+                <div class="row flex-center animated fadeIn card card-login-form  "> 
+                    <div class="card-body">   
+                    <div *ngIf="isLoginError" class="red-text center error-message">
+                        <i class="material-icons">error</i>  {{msgMatricula}} {{msgPassword}}
+                    </div>
+                    <form #loginForm="ngForm" *ngIf="!isValidateMatricula" class="col s12 white formlogin" (ngSubmit)="OnSubmitMatricula(Matricula.value)">
+                        <mat-form-field  >
+                            <input matInput type="text" #Matricula ngModel name="UserName" placeholder="Username" required [formControl]="emailFormControl"
+                            [errorStateMatcher]="matcher"> 
+                            <mat-error *ngIf=isLoginError> {{msgMatricula}} </mat-error>
+                        </mat-form-field> 
+                        <div class="text-center">
+                            <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">{{labelButtonLogin}}</button>
+                        </div>  
+                    </form>
+
+
+                    <form #loginFormPassword="ngForm" *ngIf="isValidateMatricula" class="col s12 white formlogin" (ngSubmit)="OnSubmitPassword(Password.value)"> 
+                        <mat-form-field> 
+                            <input matInput type="password" #Password ngModel name="Password" placeholder="Password" required >
+                            <mat-error *ngIf=msgPassword>
+                                {{msgPassword}}
+                                </mat-error> 
+                        </mat-form-field>
+                        <div class="text-center">
+                            <button [disabled]="!loginFormPassword.valid" mat-raised-button color="primary" type="submit">{{labelButtonLogin}}</button>
+                        </div>  
+                    </form>
+                    </div>  
+                </div> 
+                <p  class="animated fadeIn text-muted projeto">Projeto desenvolvido em estágio pelo LTI da facisa.</p>
+              </div>
+            </div>
+      
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>Contato</button> 
+        </mat-card-actions>
+      </mat-card> 
+  </div>
+</div>
+ 
+
+
+

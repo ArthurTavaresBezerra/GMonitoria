@@ -2,6 +2,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/GMonitoria.WebApi",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:54766/",
       "sslPort": 0
@@ -17,7 +21,8 @@
       }
     },
     "ShoplyService.WebApi": {
-      "commandName": "Project",
+      "commandName": "IIS",
+      "workingDirectory": "C:\\Users\\bezer\\Documents\\GitHub2\\GMonitoria\\GMonitoria.WebApi",
       "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {

@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GMonitoria.Domain.Entities;
 using GMonitoria.Infrastructure.Data.Contexts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMonitoria.WebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/Aluno")]
+    [Authorize("Bearer")]
     public class AlunoController : Controller
     {
         private readonly GMonitoriaContext _context;

@@ -1,0 +1,68 @@
+.card-login, app-login {
+    width: 100%;  
+  }
+  
+  .card-login-header-image {
+    /*background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');*/
+    background-size: cover;
+    color: antiquewhite;
+    background-color : #3f51b5; 
+    
+  }
+  
+  .divLogin {
+      height: auto;
+      margin-top:20%;
+  }
+  
+  .example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  
+  
+  .example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .form-text-login
+  {
+    color : #3f51b5; 
+  }
+
+  .button-login
+  {
+    background-color : #3f51b5; 
+  } 
+
+  .mat-form-field-underline
+  {
+    display: none!important;
+  }
+
+  .formlogin {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formlogin > * {
+    width: 100%;
+  }
+
+  .card-login-form, .card-login-form > .card-body
+  {
+      width: 80%;
+  }
+
+  button{
+    margin-top:40px;
+  }
+
+  .projeto{
+    margin-top: 30px;
+  }
