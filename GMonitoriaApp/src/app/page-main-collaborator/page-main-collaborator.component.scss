@@ -1,0 +1,35 @@
+.anand-container {
+    
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .anand-sidenav-content {
+    display: flex;
+    height: 1400px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .anand-sidenav {
+    padding: 20px;
+    height: 100%;
+    background-color : #487BC8; 
+  }
+
+  .anand-button{
+    width: 100% ; 
+    margin-bottom: 10px;
+    
+  }
+
+  .anand-toolbar{
+    background-color : #487BC8; 
+  }
+
+  .anand-alinhamento{
+    flex: 1 1 auto;
+  }
+  
+  .mat-elevation{
+    background-color : #487BC8; 
+  }
