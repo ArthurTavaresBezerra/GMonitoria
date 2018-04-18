@@ -19,8 +19,8 @@ export class SignInComponent implements OnInit {
   isValidateMatricula : boolean = false;
   labelButtonLogin : string = "Continuar";
   matricula : string = "";
-  msgMatricula : string = "";
-  msgSenha : string = "";
+  xUsuario : string = "";
+  msgError2 : string = ""; 
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -44,52 +44,77 @@ export class SignInComponent implements OnInit {
   }
 
   OnSubmitMatricula(matricula){ 
-  
-    console.log('m:'+matricula); 
-    if (this.isValidateMatricula == false)
-    {
-      this.userService.isMatriculaExists(matricula).subscribe((data : any)=>{ 
-        if (data)
-        {
-          this.labelButtonLogin  = "Entrar";
-          this.isValidateMatricula = true; 
-          this.matricula = matricula;
-        }
-        else 
-        {
-          this.matricula = null;
+      this.LimparTodosDados();  
+      if (this.isValidateMatricula == false)
+      {
+        this.userService.getMatricula(matricula).subscribe((data : any)=>{ 
+          if (data.isExists)
+          {
+            this.xUsuario = data.nome;
+            this.labelButtonLogin  = "Entrar";
+            this.isValidateMatricula = true; 
+            this.matricula = matricula;
+          }
+          else 
+          {
+            this.LimparTodosDados();
+            this.isLoginError = true;
+            this.msgError2 = "Matrícula não encontrada";
+          }
+          
+        },
+        (err : HttpErrorResponse)=>{
+          this.LimparTodosDados();
           this.isLoginError = true;
-          this.msgMatricula = "Matrícula não encontrada";
+          this.msgError2 = "Erro ao requisitar a matrícula; " + err.message;
+        });
         }
-        
-      },
-      (err : HttpErrorResponse)=>{
-        this.isLoginError = true;
-        this.msgMatricula = "Matrícula não encontrada";
-      });
-      }
-    else
-    {}
-
-}
+      else
+      {} 
+  }
      
   OnSubmitPassword(password){ 
- 
-
-    console.log('p:'+password); 
     if (this.isValidateMatricula)
     {
       this.userService.userAuthentication(this.matricula,password).subscribe((data : any)=>{
-        localStorage.setItem('userToken',data.access_token);
-        this.router.navigate(['/home']); 
+        if (data.authenticated)
+        {
+          localStorage.setItem('userToken',data.access_token);
+          this.router.navigate(['/home']); 
+        }
+        else 
+        {
+          this.isLoginError = true;
+          this.msgError2 = "Senha inválida";
+        }
       },
       (err : HttpErrorResponse)=>{
         this.isLoginError = true;
+        this.msgError2 = err.message;
       });
     } 
     else
-    {   }
+    {
+      this.MudarConta();
+    }
 
+  }
+
+  MudarConta(){ 
+    this.LimparTodosDados(); 
+  }
+
+  LimparAvisos(){
+    this.msgError2 = "";
+    this.isLoginError = false;
+  }
+
+  LimparTodosDados()
+  {
+    this.LimparAvisos();
+    this.xUsuario = "";
+    this.matricula = "";
+    this.isValidateMatricula = false;
   }
 } 
      

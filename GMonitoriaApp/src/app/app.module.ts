@@ -114,8 +114,7 @@ import { appRoutes } from './routes';
 
 import { AppComponent } from './app.component';
 import { PageMainCollaboratorComponent } from './page-main-collaborator/page-main-collaborator.component';
-import { PageMainStudentComponent } from './page-main-student/page-main-student.component';
-import { LoginComponent } from './login/login.component';
+import { PageMainStudentComponent } from './page-main-student/page-main-student.component'; 
  
 @NgModule({
   declarations: [  
@@ -123,8 +122,7 @@ import { LoginComponent } from './login/login.component';
     SignInComponent,
     SignUpComponent,
     UserComponent,
-    HomeComponent,
-    LoginComponent,
+    HomeComponent, 
     PageMainStudentComponent, 
     PageMainCollaboratorComponent,
     DialogGeral

@@ -22,15 +22,16 @@ export class UserService {
     return this.http.post(this.rootUrl + '/api/User/Register', body,{headers : reqHeader});
   }
 
-  isMatriculaExists(matricula) {
-    var data =  this.rootUrl + '/api/Auth/isMatriculaExists/' + "?UserID=" + matricula; 
+  getMatricula(matricula) {
+    var data =  this.rootUrl + '/api/Auth/getMatricula/' + "?UserID=" + matricula; 
     var reqHeader = new HttpHeaders({'No-Auth':'True'});
     return this.http.get(data, { headers: reqHeader });
   }
   
   userAuthentication(userName, password) {
-    var data = "username=" + userName + "&password=" + password + "&grant_type=password";
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
+    var data = { userID : userName, accessKey : password}
+    //var data = '{userID="' + userName + '"&accessKey="' + password + '"}'; //"&grant_type=password";
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json;','No-Auth':'True' });  
     return this.http.post(this.rootUrl + '/api/Auth/', data, { headers: reqHeader });
   }
 

@@ -9,20 +9,19 @@
           <mat-card-subtitle>Informatização dos processos de monitoria</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content> 
-          <div style="height: auto">
+          <div style="height: auto"> 
               <div class="flex-center flex-column  divLogin">
                 <h1 class="animated fadeIn mb-4">GMonitoria</h1> 
-                <h5 class="animated fadeIn mb-3">Informatizando processos de monitoria</h5>  
                 <div class="row flex-center animated fadeIn card card-login-form  "> 
                     <div class="card-body">   
                     <div *ngIf="isLoginError" class="red-text center error-message">
-                        <i class="material-icons">error</i>  {{msgMatricula}} {{msgPassword}}
+                        <i class="material-icons">error</i>  {{msgError2}} 
                     </div>
-                    <form #loginForm="ngForm" *ngIf="!isValidateMatricula" class="col s12 white formlogin" (ngSubmit)="OnSubmitMatricula(Matricula.value)">
+
+                    <form #loginForm="ngForm" *ngIf="!isValidateMatricula" class="col s12 white formlogin animated fadeIn" (ngSubmit)="OnSubmitMatricula(Matricula.value)">
+                        <h5 class=" mb-3">Informe sua matrícula </h5>  
                         <mat-form-field  >
-                            <input matInput type="text" #Matricula ngModel name="UserName" placeholder="Username" required [formControl]="emailFormControl"
-                            [errorStateMatcher]="matcher"> 
-                            <mat-error *ngIf=isLoginError> {{msgMatricula}} </mat-error>
+                            <input matInput type="text" #Matricula ngModel name="UserName" placeholder="Matrícula" required [formControl]="matricula" [errorStateMatcher]="matcher"> 
                         </mat-form-field> 
                         <div class="text-center">
                             <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">{{labelButtonLogin}}</button>
@@ -30,14 +29,13 @@
                     </form>
 
 
-                    <form #loginFormPassword="ngForm" *ngIf="isValidateMatricula" class="col s12 white formlogin" (ngSubmit)="OnSubmitPassword(Password.value)"> 
+                    <form #loginFormPassword="ngForm" *ngIf="isValidateMatricula" class="col s12 white formlogin animated fadeIn" (ngSubmit)="OnSubmitPassword(Password.value)"> 
+                        <h5 class=" mb-3">Olá, {{xUsuario}} </h5>  
                         <mat-form-field> 
-                            <input matInput type="password" #Password ngModel name="Password" placeholder="Password" required >
-                            <mat-error *ngIf=msgPassword>
-                                {{msgPassword}}
-                                </mat-error> 
+                            <input matInput type="password" #Password ngModel name="Password" placeholder="Password" required > 
                         </mat-form-field>
                         <div class="text-center">
+                            <button mat-icon-button><mat-icon aria-label="icon-button with a arrow icon" (click)="MudarConta()" >keyboard_backspace</mat-icon> </button>
                             <button [disabled]="!loginFormPassword.valid" mat-raised-button color="primary" type="submit">{{labelButtonLogin}}</button>
                         </div>  
                     </form>

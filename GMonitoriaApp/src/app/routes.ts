@@ -4,8 +4,7 @@ import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { PageMainCollaboratorComponent } from './page-main-collaborator/page-main-collaborator.component';
-import { PageMainStudentComponent } from './page-main-student/page-main-student.component';
-import { LoginComponent } from './login/login.component';
+import { PageMainStudentComponent } from './page-main-student/page-main-student.component'; 
  
 import { AuthGuard } from './auth/auth.guard';
  
@@ -20,6 +19,6 @@ export const appRoutes: Routes = [
         path: 'login',  component: SignInComponent
     },
     { path : '', redirectTo:'/login', pathMatch : 'full'}, 
-    { path: '**', component: LoginComponent }
+    { path: '**', redirectTo:'/login', pathMatch : 'full'} 
     
 ];

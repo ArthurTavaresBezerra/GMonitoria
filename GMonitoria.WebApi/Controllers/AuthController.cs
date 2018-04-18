@@ -91,20 +91,28 @@ namespace GMonitoria.WebApi.Controllers
             }
         }
 
-        [HttpGet("{isMatriculaExists}")]
-        public string isMatriculaExists( [FromQuery] string UserID, [FromServices]GMonitoriaContext context)
+        [HttpGet("{getMatricula}")]
+        public object getMatricula([FromQuery] string UserID, [FromServices]GMonitoriaContext context)
         {
             if (string.IsNullOrEmpty(UserID) == false)
             {
-                if (context.Aluno.Any(c => c.Matricula == UserID) 
-                    || context.Coordenador.Any(c => c.CoordenadorId == UserID)
-                    || context.Professor.Any(c => c.ProfessorId == UserID))
-                    return "1";
+                if (context.Aluno.Any(c => c.Matricula == UserID))
+                    return new { isExists = true, nome = context.Aluno.FirstOrDefault(c => c.Matricula == UserID).Xaluno };
+
+                if (context.Coordenador.Any(c => c.CoordenadorId == UserID))
+                    return new { isExists = true, nome = context.Coordenador.FirstOrDefault(c => c.CoordenadorId == UserID).Xcoordenador };
+
+
+                if (context.Professor.Any(c => c.ProfessorId == UserID))
+                    return new { isExists = true, nome = context.Professor.FirstOrDefault(c => c.ProfessorId == UserID).Xprofessor };
+
             }
 
-            return "";
-        }
+            return new
+            {
+                isExists = false
+            };
 
-        
+        }
     }
 }
