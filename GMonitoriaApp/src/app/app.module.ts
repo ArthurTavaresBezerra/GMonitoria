@@ -94,7 +94,7 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-  ]
+  ] 
 })
 export class MaterialModule {}
 
@@ -114,11 +114,13 @@ import { appRoutes } from './routes';
 
 import { AppComponent } from './app.component';
 import { PageMainCollaboratorComponent } from './page-main-collaborator/page-main-collaborator.component';
-import { PageMainStudentComponent } from './page-main-student/page-main-student.component'; 
+import { PageMainStudentComponent } from './page-main-student/page-main-student.component';
+import { SideBarComponent } from './shared/side-bar/side-bar.component'; 
  
 @NgModule({
   declarations: [  
     AppComponent,
+    SideBarComponent,
     SignInComponent,
     SignUpComponent,
     UserComponent,
