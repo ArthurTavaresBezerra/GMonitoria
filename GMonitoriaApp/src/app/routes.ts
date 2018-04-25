@@ -1,3 +1,4 @@
+import { PageMainProcessoSeletivoComponent } from './page-main-processo-seletivo/page-main-processo-seletivo.component';
 import { Routes } from '@angular/router'
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
@@ -11,6 +12,8 @@ import { AuthGuard } from './auth/auth.guard';
 export const appRoutes: Routes = [
     { path: 'home',         component: HomeComponent ,canActivate:[AuthGuard] },
     { path: 'collaborator', component: PageMainCollaboratorComponent},
+    { path: 'ProcessoSeletivo', component: PageMainProcessoSeletivoComponent},
+   
     {
         path: 'register',     component: UserComponent,
         children: [{ path: '', component: SignUpComponent }]

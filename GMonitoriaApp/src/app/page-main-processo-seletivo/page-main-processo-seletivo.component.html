@@ -1,0 +1,27 @@
+
+
+
+
+<div class="container">
+   
+    <h1 class="page-header" > Processos Seletivos</h1>
+    <div class="table-responsive"></div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr class="active">
+                <th>periodo</th>
+                <th>Datahora</th>
+                <th>IsIniciado</th>
+                <th>IsConcluido</th>
+                <th>ProcessoS eletivoCurso</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let processoSeletivoModel of processosSeletivos" >
+            <td>{{processoSeletivoModel.periodo}}</td>
+            <td>{{processoSeletivoModel.datahora}}</td>
+            <td>{{processoSeletivoModel.isIniciado}}</td>
+            <td>{{processoSeletivoModel.isConcluido}}</td>
+            <td>{{processoSeletivoModel.processoSeletivoCurso}}</td>
+        </tbody>
+    </table>
+    </div>

@@ -1,3 +1,7 @@
+import { ProcessoSeletivoService } from './processoSeletivo.service';
+import { ProcessoSeletivoModel } from './model/processoSeletivoModel';
+
+
 
 import {CdkTableModule} from '@angular/cdk/table';
 import {A11yModule} from '@angular/cdk/a11y';
@@ -20,6 +24,7 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor'; 
 import { DialogGeral } from './shared/dialogs/dialog-geral';
+
 
 /** Materal Angular */
 import {
@@ -114,7 +119,8 @@ import { appRoutes } from './routes';
 
 import { AppComponent } from './app.component';
 import { PageMainCollaboratorComponent } from './page-main-collaborator/page-main-collaborator.component';
-import { PageMainStudentComponent } from './page-main-student/page-main-student.component'; 
+import { PageMainStudentComponent } from './page-main-student/page-main-student.component';
+import { PageMainProcessoSeletivoComponent } from './page-main-processo-seletivo/page-main-processo-seletivo.component'; 
  
 @NgModule({
   declarations: [  
@@ -125,6 +131,7 @@ import { PageMainStudentComponent } from './page-main-student/page-main-student.
     HomeComponent, 
     PageMainStudentComponent, 
     PageMainCollaboratorComponent,
+    PageMainProcessoSeletivoComponent,
     DialogGeral
   ],
   imports: [
@@ -148,6 +155,7 @@ import { PageMainStudentComponent } from './page-main-student/page-main-student.
   providers: [
     UserService, 
     AuthGuard,
+    ProcessoSeletivoService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
