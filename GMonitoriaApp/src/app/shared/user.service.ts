@@ -7,7 +7,7 @@ import { User } from './user.model';
 
 @Injectable()
 export class UserService {
-  readonly rootUrl = 'http://localhost:54766';
+  readonly rootUrl = 'http://74cdfb0f.ngrok.io';
   constructor(private http: HttpClient) { }
 
   registerUser(user: User) {
@@ -36,7 +36,7 @@ export class UserService {
   }
 
   getUserClaims(){
-   return  this.http.get(this.rootUrl+'/api/GetUserClaims');
+   return  this.http.get(this.rootUrl+'/api/Auth/GetUserClaims');
   }
 
 }

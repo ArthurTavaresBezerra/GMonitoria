@@ -14,7 +14,7 @@ namespace GMonitoria.DIP
     {
         public static void ConfigureServices(ref IServiceCollection services) {
           
-            services.AddDbContext<GMonitoriaContext>(opt => opt.UseMySql("Server=localhost;User Id=root;Password=root;Database=GMonitoria_v1"), ServiceLifetime.Singleton);
+            services.AddDbContext<GMonitoriaContext>(opt => opt.UseMySql("Server=localhost;User Id=root;Password=root;Database=GMonitoria_V1"), ServiceLifetime.Singleton);
             services.AddTransient<GMonitoriaInitializer>();
 
             //services.AddDbContext<ContextDB>(opt => opt.UseInMemoryDatabase("GMonitoria_V1"), ServiceLifetime.Singleton);

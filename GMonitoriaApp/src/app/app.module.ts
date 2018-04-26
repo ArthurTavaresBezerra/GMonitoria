@@ -129,7 +129,6 @@ import { SideBarComponent } from './shared/side-bar/side-bar.component';
 @NgModule({
   declarations: [  
     AppComponent,
-    SideBarComponent,
     SignInComponent,
     SignUpComponent,
     UserComponent,

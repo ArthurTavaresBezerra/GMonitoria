@@ -14,7 +14,7 @@
    
     .divLogin {
       height: auto;
-      margin-top:100px;
+      margin-top:60px;
   }
 }
 
@@ -23,7 +23,7 @@
   .divLogin {
     height: auto;
     margin-top:150px;
-}
+ }
 }
 
   
@@ -68,7 +68,7 @@
 
   .card-login-form, .card-login-form > .card-body
   {
-      width: 80%;
+      width: 100%;
   }
 
   button{

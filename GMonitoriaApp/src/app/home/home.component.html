@@ -1,26 +1,45 @@
-<nav>
-  <div class="nav-wrapper">
-    <a href="#" class="brand-logo center">
-      <i class="material-icons">cloud</i>Dotnet Mob App</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li>
-        <a (click)="Logout()">Logout</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<div class="row" *ngIf="userClaims">
-  <div class="col s12 m7">
-    <div class="card">
-      <div class="card-content">
-        <span>Username :{{userClaims.UserName}}</span>
-        <br>
-        <span>Email : {{userClaims.Email}}</span>
-        <br>
-        <span>Full Name : {{userClaims.FirstName}} {{userClaims.LastName}}</span>
-        <br>
-        <span>Logged On : {{userClaims.LoggedOn}}</span>
+<div class="home" [class.example-is-mobile]="mobileQuery.matches"  >
+  <mat-toolbar color="primary" class="example-toolbar mat-elevation-z6">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <div  class="  logo app-name flex-center">GMonitoria</div>  
+    <span class="toolbar-spacer"></span>   
+    <button mat-mini-fab color="primary" class="right" [matMenuTriggerFor]="menu">
+      <mat-icon aria-label="">account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item >
+        <mat-icon>perm_identity</mat-icon>
+        <span>Meus dados</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container " [style.paddingTop.px]="mobileQuery.matches ? 26 : 0"> 
+    <mat-sidenav #snav class="sidenav"  [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="mobileQuery.matches ? 'false' : 'true'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <div class="sidenav-header">
+          <div mat-card-avatar class="card-login-header-image logo flex-center"><mat-icon>account_circle</mat-icon></div>
+          <div class="text-center">Olá Rapaz</div>
+          <div class="text-center">Bem vindo!</div>
       </div>
-    </div>
-  </div>
+      <mat-nav-list class=""> 
+        <button mat-menu-item routerLink="login">
+          <mat-icon>perm_identity</mat-icon>
+          <span>Meus dados</span>
+        </button>
+        <button mat-menu-item routerLink=".">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sair</span>
+        </button> 
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="page-container">
+        <p *ngFor="let content of fillerContent">{{content}}</p>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
