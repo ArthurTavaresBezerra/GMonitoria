@@ -120,11 +120,11 @@ import { appRoutes } from './routes';
 import { AppComponent } from './app.component';
 import { PageMainCollaboratorComponent } from './page-main-collaborator/page-main-collaborator.component';
 import { PageMainStudentComponent } from './page-main-student/page-main-student.component';
-<<<<<<< HEAD
+
 import { PageMainProcessoSeletivoComponent } from './page-main-processo-seletivo/page-main-processo-seletivo.component'; 
-=======
+
 import { SideBarComponent } from './shared/side-bar/side-bar.component'; 
->>>>>>> 749a730650855a456e0a0f60176ebf09dfa8955e
+
  
 @NgModule({
   declarations: [  
