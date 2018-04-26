@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{EC2BCF46-8FD7-4417-A930-6493BD500AEA}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GMonitoria.Infrastructure.Data/Migrations/Gmonitoria_v1.sql">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GMonitoria.WebApi/Controllers/AuthController.cs">
     <Files>
-      <File FileName="GMonitoria.Infrastructure.Data/Migrations/Gmonitoria_v1.sql" Line="64" Column="30" />
+      <File FileName="GMonitoria.WebApi/Controllers/AuthController.cs" Line="21" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Android" />

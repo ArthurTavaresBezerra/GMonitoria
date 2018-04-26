@@ -7,7 +7,8 @@ import { User } from './user.model';
 
 @Injectable()
 export class UserService {
-  readonly rootUrl = 'http://74cdfb0f.ngrok.io';
+  readonly rootUrl = 'http://localhost:5000';
+  //readonly rootUrl = 'http://1e847382.ngrok.io';
   constructor(private http: HttpClient) { }
 
   registerUser(user: User) {
