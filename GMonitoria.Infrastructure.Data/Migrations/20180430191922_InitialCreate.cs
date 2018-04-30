@@ -6,23 +6,8 @@ namespace GMonitoria.Infrastructure.Data.Migrations
 {
     public partial class InitialCreate : Migration
     {
-        public void Public_Up(MigrationBuilder migrationBuilder) { Up(migrationBuilder); }
-        public void Public_Down(MigrationBuilder migrationBuilder) { Down(migrationBuilder); }
-
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "ALUNO",
-                columns: table => new
-                {
-                    MATRICULA = table.Column<string>(maxLength: 200, nullable: false),
-                    XALUNO = table.Column<string>(maxLength: 200, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ALUNO", x => x.MATRICULA);
-                });
-
             migrationBuilder.CreateTable(
                 name: "CURSO",
                 columns: table => new
@@ -36,7 +21,19 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PROCESSO_SELETIVO",
+                name: "papel",
+                columns: table => new
+                {
+                    PAPEL_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    XPAPEL = table.Column<string>(maxLength: 200, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_papel", x => x.PAPEL_ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "processo_seletivo",
                 columns: table => new
                 {
                     PROCESSO_SELETIVO_ID = table.Column<string>(maxLength: 200, nullable: false),
@@ -47,52 +44,34 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PROCESSO_SELETIVO", x => x.PROCESSO_SELETIVO_ID);
+                    table.PrimaryKey("PK_processo_seletivo", x => x.PROCESSO_SELETIVO_ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PROFESSOR",
+                name: "usuario",
                 columns: table => new
                 {
-                    PROFESSOR_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    XPROFESSOR = table.Column<string>(maxLength: 200, nullable: false)
+                    USUARIO_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    MATRICULA = table.Column<string>(maxLength: 200, nullable: false),
+                    SENHA = table.Column<string>(maxLength: 200, nullable: false),
+                    XUSUARIO = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PROFESSOR", x => x.PROFESSOR_ID);
+                    table.PrimaryKey("PK_usuario", x => x.USUARIO_ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "COORDENADOR",
-                columns: table => new
-                {
-                    COORDENADOR_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    CURSO_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    XCOORDENADOR = table.Column<string>(maxLength: 200, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_COORDENADOR", x => x.COORDENADOR_ID);
-                    table.ForeignKey(
-                        name: "FK_COORDENADOR_CURRICULAR_CURSO",
-                        column: x => x.CURSO_ID,
-                        principalTable: "CURSO",
-                        principalColumn: "CURSO_ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PROCESSO_SELETIVO_CURSO",
+                name: "processo_seletivo_curso",
                 columns: table => new
                 {
                     PROCESSO_SELETIVO_CURSO_ID = table.Column<string>(maxLength: 200, nullable: false),
                     CURSO_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    PROCESSO_SELETIVO_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    VAGAR_REQUISICAO_ID = table.Column<string>(maxLength: 200, nullable: false)
+                    PROCESSO_SELETIVO_ID = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PROCESSO_SELETIVO_CURSO", x => x.PROCESSO_SELETIVO_CURSO_ID);
+                    table.PrimaryKey("PK_processo_seletivo_curso", x => x.PROCESSO_SELETIVO_CURSO_ID);
                     table.ForeignKey(
                         name: "FK_PROCESSO_SELETIVO_CURSO_CURSO",
                         column: x => x.CURSO_ID,
@@ -102,13 +81,13 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     table.ForeignKey(
                         name: "FK_PROCESSO_SELETIVO_CURSO_PROCESSO_SELETIVO",
                         column: x => x.PROCESSO_SELETIVO_ID,
-                        principalTable: "PROCESSO_SELETIVO",
+                        principalTable: "processo_seletivo",
                         principalColumn: "PROCESSO_SELETIVO_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "COMPONENTE_CURRICULAR",
+                name: "componente_curricular",
                 columns: table => new
                 {
                     COMPONENTE_CURRICULAR_ID = table.Column<string>(maxLength: 200, nullable: false),
@@ -118,7 +97,7 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_COMPONENTE_CURRICULAR", x => x.COMPONENTE_CURRICULAR_ID);
+                    table.PrimaryKey("PK_componente_curricular", x => x.COMPONENTE_CURRICULAR_ID);
                     table.ForeignKey(
                         name: "FK_COMPONENTE_CURRICULAR_CURSO",
                         column: x => x.CURSO_ID,
@@ -128,77 +107,105 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     table.ForeignKey(
                         name: "FK_COMPONENTE_CURRICULAR_PROFESSOR",
                         column: x => x.PROFESSOR_ID,
-                        principalTable: "PROFESSOR",
-                        principalColumn: "PROFESSOR_ID",
+                        principalTable: "usuario",
+                        principalColumn: "USUARIO_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "VAGA_REQUISICAO",
+                name: "usuario_papel",
                 columns: table => new
                 {
-                    VAGA_REQUISICAO_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    ACEITACAO = table.Column<bool>(type: "bit(1)", nullable: false),
-                    COMPONENTE_CURRICULAR_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    PROCESSO_SELETIVO_CURSO_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    PROCESSO_SELETIVO_SELETIVO_CURSO_ID = table.Column<int>(type: "int(11)", nullable: false),
-                    PROFESSOR_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    QUANTIDADE = table.Column<int>(type: "int(11)", nullable: false),
-                    QUANTIDADE_ACEITA = table.Column<int>(type: "int(11)", nullable: true),
-                    QUANTIDADE_BOLSA = table.Column<int>(type: "int(11)", nullable: true)
+                    USUARIO_PAPEL_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    CURSO_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    PAPEL_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    USUARIO_ID = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VAGA_REQUISICAO", x => x.VAGA_REQUISICAO_ID);
+                    table.PrimaryKey("PK_usuario_papel", x => x.USUARIO_PAPEL_ID);
+                    table.ForeignKey(
+                        name: "FK_USUARIO_PAPEL_CURSO",
+                        column: x => x.CURSO_ID,
+                        principalTable: "CURSO",
+                        principalColumn: "CURSO_ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_USUARIO_PAPEL_PAPEL",
+                        column: x => x.PAPEL_ID,
+                        principalTable: "papel",
+                        principalColumn: "PAPEL_ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_USUARIO_PAPEL_USUARIO",
+                        column: x => x.USUARIO_ID,
+                        principalTable: "usuario",
+                        principalColumn: "USUARIO_ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "vaga_requisicao",
+                columns: table => new
+                {
+                    VAGA_REQUISICAO_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    COMPONENTE_CURRICULAR_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    PROCESSO_SELETIVO_CURSO_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    PROFESSOR_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    QUANTIDADE = table.Column<int>(type: "int(11)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_vaga_requisicao", x => x.VAGA_REQUISICAO_ID);
                     table.ForeignKey(
                         name: "FK_VAGA_REQUISICAO_COMPONENTE_CURRICULAR",
                         column: x => x.COMPONENTE_CURRICULAR_ID,
-                        principalTable: "COMPONENTE_CURRICULAR",
+                        principalTable: "componente_curricular",
                         principalColumn: "COMPONENTE_CURRICULAR_ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_VAGA_REQUISICAO_PROCESSO_SELETIVO_CURSO",
                         column: x => x.PROCESSO_SELETIVO_CURSO_ID,
-                        principalTable: "PROCESSO_SELETIVO_CURSO",
+                        principalTable: "processo_seletivo_curso",
                         principalColumn: "PROCESSO_SELETIVO_CURSO_ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_VAGA_REQUISICAO_PROFESSOR",
                         column: x => x.PROFESSOR_ID,
-                        principalTable: "PROFESSOR",
-                        principalColumn: "PROFESSOR_ID",
+                        principalTable: "usuario",
+                        principalColumn: "USUARIO_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "INSCRICAO",
+                name: "inscricao",
                 columns: table => new
                 {
                     INSCRICAO_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    ALUNO_ID = table.Column<string>(maxLength: 200, nullable: false),
                     CPF = table.Column<string>(maxLength: 200, nullable: false),
-                    MATRICULA = table.Column<string>(maxLength: 200, nullable: false),
                     PROTOCOLO = table.Column<string>(maxLength: 200, nullable: false),
                     VAGA_REQUISICAO_ID = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_INSCRICAO", x => x.INSCRICAO_ID);
+                    table.PrimaryKey("PK_inscricao", x => x.INSCRICAO_ID);
                     table.ForeignKey(
                         name: "FK_INSCRICAO_ALUNO",
-                        column: x => x.MATRICULA,
-                        principalTable: "ALUNO",
-                        principalColumn: "MATRICULA",
+                        column: x => x.ALUNO_ID,
+                        principalTable: "usuario",
+                        principalColumn: "USUARIO_ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_INSCRICAO_VAGA_REQUISICAO",
                         column: x => x.VAGA_REQUISICAO_ID,
-                        principalTable: "VAGA_REQUISICAO",
+                        principalTable: "vaga_requisicao",
                         principalColumn: "VAGA_REQUISICAO_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PROVA",
+                name: "prova",
                 columns: table => new
                 {
                     PROVA_ID = table.Column<string>(maxLength: 200, nullable: false),
@@ -211,17 +218,17 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PROVA", x => x.PROVA_ID);
+                    table.PrimaryKey("PK_prova", x => x.PROVA_ID);
                     table.ForeignKey(
                         name: "FK_PROVA_VAGA_REQUISICAO",
                         column: x => x.VAGA_REQUISICAO_ID,
-                        principalTable: "VAGA_REQUISICAO",
+                        principalTable: "vaga_requisicao",
                         principalColumn: "VAGA_REQUISICAO_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "VAGA",
+                name: "vaga",
                 columns: table => new
                 {
                     VAGA_ID = table.Column<string>(maxLength: 200, nullable: false),
@@ -231,11 +238,39 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VAGA", x => x.VAGA_ID);
+                    table.PrimaryKey("PK_vaga", x => x.VAGA_ID);
                     table.ForeignKey(
                         name: "FK_VAGA_VAGA_REQUISICAO",
                         column: x => x.VAGA_REQUISICAO_ID,
-                        principalTable: "VAGA_REQUISICAO",
+                        principalTable: "vaga_requisicao",
+                        principalColumn: "VAGA_REQUISICAO_ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "vaga_requisicao_aprovacao",
+                columns: table => new
+                {
+                    VAGA_REQUISICAO_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    COORDENADOR_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    IS_APROVADO = table.Column<bool>(type: "bit(1)", nullable: false),
+                    QUANTIDADE_APROVADA = table.Column<int>(type: "int(11)", nullable: false),
+                    QUANTIDADE_COM_BOLSA = table.Column<int>(type: "int(11)", nullable: false),
+                    QUANTIDADE_SEM_BOLSA = table.Column<int>(type: "int(11)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_vaga_requisicao_aprovacao", x => x.VAGA_REQUISICAO_ID);
+                    table.ForeignKey(
+                        name: "FK_VAGA_REQUISICAO_APROVACAO_COORDENADOR",
+                        column: x => x.COORDENADOR_ID,
+                        principalTable: "usuario",
+                        principalColumn: "USUARIO_ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_VAGA_REQUISICAO_APROVACAO_VAGA_REQUISICAO",
+                        column: x => x.VAGA_REQUISICAO_ID,
+                        principalTable: "vaga_requisicao",
                         principalColumn: "VAGA_REQUISICAO_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -245,11 +280,11 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 columns: table => new
                 {
                     HORARIO_ATENDIMENTO_ID = table.Column<string>(maxLength: 200, nullable: false),
+                    DataAlteracao = table.Column<int>(nullable: false),
                     DIA_DA_SEMANA = table.Column<string>(maxLength: 200, nullable: false),
                     HORA_FIM = table.Column<DateTime>(type: "datetime", nullable: false),
                     HORA_INICIO = table.Column<DateTime>(type: "datetime", nullable: false),
                     INSCRICAO_ID = table.Column<string>(maxLength: 200, nullable: false),
-                    MES = table.Column<int>(type: "int(11)", nullable: false),
                     SALA = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -258,13 +293,13 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                     table.ForeignKey(
                         name: "FK_HORARIO_ATENDIMENTO_INSCRICAO",
                         column: x => x.INSCRICAO_ID,
-                        principalTable: "INSCRICAO",
+                        principalTable: "inscricao",
                         principalColumn: "INSCRICAO_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "INSCRICAO_RESULTADO",
+                name: "inscricao_resultado",
                 columns: table => new
                 {
                     INSCRICAO_RESULTADO_ID = table.Column<string>(maxLength: 200, nullable: false),
@@ -273,17 +308,17 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_INSCRICAO_RESULTADO", x => x.INSCRICAO_RESULTADO_ID);
+                    table.PrimaryKey("PK_inscricao_resultado", x => x.INSCRICAO_RESULTADO_ID);
                     table.ForeignKey(
                         name: "FK_INSCRICAO_RESULTADO_INSCRICAO",
                         column: x => x.INSCRICAO_ID,
-                        principalTable: "INSCRICAO",
+                        principalTable: "inscricao",
                         principalColumn: "INSCRICAO_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "INSCRICAO_PROVA",
+                name: "inscricao_prova",
                 columns: table => new
                 {
                     INSCRICAO_PROVA_ID = table.Column<string>(maxLength: 200, nullable: false),
@@ -293,23 +328,23 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_INSCRICAO_PROVA", x => x.INSCRICAO_PROVA_ID);
+                    table.PrimaryKey("PK_inscricao_prova", x => x.INSCRICAO_PROVA_ID);
                     table.ForeignKey(
                         name: "FK_INSCRICAO_PROVA_INSCRICAO",
                         column: x => x.INSCRICAO_ID,
-                        principalTable: "INSCRICAO",
+                        principalTable: "inscricao",
                         principalColumn: "INSCRICAO_ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_INSCRICAO_PROVA_PROVA",
                         column: x => x.PROVA_ID,
-                        principalTable: "PROVA",
+                        principalTable: "prova",
                         principalColumn: "PROVA_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "INSCRICAO_ACEITACAO_MONITORIA",
+                name: "inscricao_aceitacao_monitoria",
                 columns: table => new
                 {
                     INSCRICAO_ACEITACAO_MONITORIA_ID = table.Column<string>(maxLength: 200, nullable: false),
@@ -318,35 +353,30 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_INSCRICAO_ACEITACAO_MONITORIA", x => x.INSCRICAO_ACEITACAO_MONITORIA_ID);
+                    table.PrimaryKey("PK_inscricao_aceitacao_monitoria", x => x.INSCRICAO_ACEITACAO_MONITORIA_ID);
                     table.ForeignKey(
                         name: "FK_INSCRICAO_ACEITACAO_MONITORIA_INSCRICAO",
                         column: x => x.INSCRICAO_ID,
-                        principalTable: "INSCRICAO",
+                        principalTable: "inscricao",
                         principalColumn: "INSCRICAO_ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_INSCRICAO_ACEITACAO_MONITORIA_VAGA",
                         column: x => x.VAGA_ID,
-                        principalTable: "VAGA",
+                        principalTable: "vaga",
                         principalColumn: "VAGA_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "FK_COMPONENTE_CURRICULAR_CURSO",
-                table: "COMPONENTE_CURRICULAR",
+                table: "componente_curricular",
                 column: "CURSO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_COMPONENTE_CURRICULAR_PROFESSOR",
-                table: "COMPONENTE_CURRICULAR",
+                table: "componente_curricular",
                 column: "PROFESSOR_ID");
-
-            migrationBuilder.CreateIndex(
-                name: "FK_COORDENADOR_CURRICULAR_CURSO",
-                table: "COORDENADOR",
-                column: "CURSO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_HORARIO_ATENDIMENTO_INSCRICAO",
@@ -355,121 +385,144 @@ namespace GMonitoria.Infrastructure.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "FK_INSCRICAO_ALUNO",
-                table: "INSCRICAO",
-                column: "MATRICULA");
+                table: "inscricao",
+                column: "ALUNO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_INSCRICAO_VAGA_REQUISICAO",
-                table: "INSCRICAO",
+                table: "inscricao",
                 column: "VAGA_REQUISICAO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_INSCRICAO_ACEITACAO_MONITORIA_INSCRICAO",
-                table: "INSCRICAO_ACEITACAO_MONITORIA",
+                table: "inscricao_aceitacao_monitoria",
                 column: "INSCRICAO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_INSCRICAO_ACEITACAO_MONITORIA_VAGA",
-                table: "INSCRICAO_ACEITACAO_MONITORIA",
+                table: "inscricao_aceitacao_monitoria",
                 column: "VAGA_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_INSCRICAO_PROVA_INSCRICAO",
-                table: "INSCRICAO_PROVA",
+                table: "inscricao_prova",
                 column: "INSCRICAO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_INSCRICAO_PROVA_PROVA",
-                table: "INSCRICAO_PROVA",
+                table: "inscricao_prova",
                 column: "PROVA_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_INSCRICAO_RESULTADO_INSCRICAO",
-                table: "INSCRICAO_RESULTADO",
+                table: "inscricao_resultado",
                 column: "INSCRICAO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_PROCESSO_SELETIVO_CURSO_CURSO",
-                table: "PROCESSO_SELETIVO_CURSO",
+                table: "processo_seletivo_curso",
                 column: "CURSO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_PROCESSO_SELETIVO_CURSO_PROCESSO_SELETIVO",
-                table: "PROCESSO_SELETIVO_CURSO",
+                table: "processo_seletivo_curso",
                 column: "PROCESSO_SELETIVO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_PROVA_VAGA_REQUISICAO",
-                table: "PROVA",
+                table: "prova",
                 column: "VAGA_REQUISICAO_ID");
 
             migrationBuilder.CreateIndex(
+                name: "FK_USUARIO_PAPEL_CURSO",
+                table: "usuario_papel",
+                column: "CURSO_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "FK_USUARIO_PAPEL_PAPEL",
+                table: "usuario_papel",
+                column: "PAPEL_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "FK_USUARIO_PAPEL_USUARIO",
+                table: "usuario_papel",
+                column: "USUARIO_ID");
+
+            migrationBuilder.CreateIndex(
                 name: "FK_VAGA_VAGA_REQUISICAO",
-                table: "VAGA",
+                table: "vaga",
                 column: "VAGA_REQUISICAO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_VAGA_REQUISICAO_COMPONENTE_CURRICULAR",
-                table: "VAGA_REQUISICAO",
+                table: "vaga_requisicao",
                 column: "COMPONENTE_CURRICULAR_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_VAGA_REQUISICAO_PROCESSO_SELETIVO_CURSO",
-                table: "VAGA_REQUISICAO",
+                table: "vaga_requisicao",
                 column: "PROCESSO_SELETIVO_CURSO_ID");
 
             migrationBuilder.CreateIndex(
                 name: "FK_VAGA_REQUISICAO_PROFESSOR",
-                table: "VAGA_REQUISICAO",
+                table: "vaga_requisicao",
                 column: "PROFESSOR_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "FK_VAGA_REQUISICAO_APROVACAO_COORDENADOR",
+                table: "vaga_requisicao_aprovacao",
+                column: "COORDENADOR_ID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "COORDENADOR");
-
-            migrationBuilder.DropTable(
                 name: "HORARIO_ATENDIMENTO");
 
             migrationBuilder.DropTable(
-                name: "INSCRICAO_ACEITACAO_MONITORIA");
+                name: "inscricao_aceitacao_monitoria");
 
             migrationBuilder.DropTable(
-                name: "INSCRICAO_PROVA");
+                name: "inscricao_prova");
 
             migrationBuilder.DropTable(
-                name: "INSCRICAO_RESULTADO");
+                name: "inscricao_resultado");
 
             migrationBuilder.DropTable(
-                name: "VAGA");
+                name: "usuario_papel");
 
             migrationBuilder.DropTable(
-                name: "PROVA");
+                name: "vaga_requisicao_aprovacao");
 
             migrationBuilder.DropTable(
-                name: "INSCRICAO");
+                name: "vaga");
 
             migrationBuilder.DropTable(
-                name: "ALUNO");
+                name: "prova");
 
             migrationBuilder.DropTable(
-                name: "VAGA_REQUISICAO");
+                name: "inscricao");
 
             migrationBuilder.DropTable(
-                name: "COMPONENTE_CURRICULAR");
+                name: "papel");
 
             migrationBuilder.DropTable(
-                name: "PROCESSO_SELETIVO_CURSO");
+                name: "vaga_requisicao");
 
             migrationBuilder.DropTable(
-                name: "PROFESSOR");
+                name: "componente_curricular");
+
+            migrationBuilder.DropTable(
+                name: "processo_seletivo_curso");
+
+            migrationBuilder.DropTable(
+                name: "usuario");
 
             migrationBuilder.DropTable(
                 name: "CURSO");
 
             migrationBuilder.DropTable(
-                name: "PROCESSO_SELETIVO");
+                name: "processo_seletivo");
         }
     }
 }
