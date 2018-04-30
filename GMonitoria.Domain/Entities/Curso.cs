@@ -8,15 +8,15 @@ namespace GMonitoria.Domain.Entities
         public Curso()
         {
             ComponenteCurricular = new HashSet<ComponenteCurricular>();
-            Coordenador = new HashSet<Coordenador>();
             ProcessoSeletivoCurso = new HashSet<ProcessoSeletivoCurso>();
+            UsuarioPapel = new HashSet<UsuarioPapel>();
         }
 
         public string CursoId { get; set; }
         public string Xcurso { get; set; }
 
         public ICollection<ComponenteCurricular> ComponenteCurricular { get; set; }
-        public ICollection<Coordenador> Coordenador { get; set; }
         public ICollection<ProcessoSeletivoCurso> ProcessoSeletivoCurso { get; set; }
+        public ICollection<UsuarioPapel> UsuarioPapel { get; set; }
     }
 }

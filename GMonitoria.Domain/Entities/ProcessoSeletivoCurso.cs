@@ -13,7 +13,6 @@ namespace GMonitoria.Domain.Entities
         public string ProcessoSeletivoCursoId { get; set; }
         public string ProcessoSeletivoId { get; set; }
         public string CursoId { get; set; }
-        public string VagarRequisicaoId { get; set; }
 
         public Curso Curso { get; set; }
         public ProcessoSeletivo ProcessoSeletivo { get; set; }

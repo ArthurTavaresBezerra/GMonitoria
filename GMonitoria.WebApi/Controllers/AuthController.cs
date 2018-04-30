@@ -27,23 +27,10 @@ namespace GMonitoria.WebApi.Controllers
             bool credenciaisValidas = false;
             if (usuario != null && !String.IsNullOrWhiteSpace(usuario.UserID))
             {
-                Aluno alunoDb = context.Aluno.Find(usuario.UserID);
-                Professor professorDb = null;
-                Coordenador coordenador = null;
-
-                credenciaisValidas = (alunoDb != null &&  usuario.UserID == alunoDb.Matricula && usuario.AccessKey == "123");//alunoDb.AccessKey);
-
-                if (alunoDb == null)
-                {
-                    professorDb = context.Professor.Find(usuario.UserID);
-                    credenciaisValidas = (professorDb != null && usuario.UserID == professorDb.ProfessorId && usuario.AccessKey == "123");//alunoDb.AccessKey);
-                }
-                else if (professorDb == null)
-                    {
-                        coordenador = context.Coordenador.Find(usuario.UserID);
-                        credenciaisValidas = (coordenador != null && usuario.UserID == coordenador.CoordenadorId && usuario.AccessKey == "123");//alunoDb.AccessKey);
-                    }
-
+                Usuario u = context.Usuario.Find(usuario.UserID);
+                //u.UsuarioPapel.ToList().ForEach(delegate (UsuarioPapel p) { ret });
+                if (usuario != null)
+                    credenciaisValidas = usuario.AccessKey == u.Senha;//alunoDb.AccessKey);
             }
 
             if (credenciaisValidas)
@@ -96,16 +83,8 @@ namespace GMonitoria.WebApi.Controllers
         {
             if (string.IsNullOrEmpty(UserID) == false)
             {
-                if (context.Aluno.Any(c => c.Matricula == UserID))
-                    return new { isExists = true, nome = context.Aluno.FirstOrDefault(c => c.Matricula == UserID).Xaluno };
-
-                if (context.Coordenador.Any(c => c.CoordenadorId == UserID))
-                    return new { isExists = true, nome = context.Coordenador.FirstOrDefault(c => c.CoordenadorId == UserID).Xcoordenador };
-
-
-                if (context.Professor.Any(c => c.ProfessorId == UserID))
-                    return new { isExists = true, nome = context.Professor.FirstOrDefault(c => c.ProfessorId == UserID).Xprofessor };
-
+                if (context.Usuario.Any(c => c.Matricula == UserID))
+                    return new { isExists = true, nome = context.Usuario.FirstOrDefault(c => c.Matricula == UserID).Xusuario};
             }
 
             return new

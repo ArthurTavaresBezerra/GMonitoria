@@ -14,12 +14,12 @@ namespace GMonitoria.Domain.Entities
         }
 
         public string InscricaoId { get; set; }
-        public string Matricula { get; set; }
+        public string AlunoId { get; set; }
         public string Cpf { get; set; }
         public string Protocolo { get; set; }
         public string VagaRequisicaoId { get; set; }
 
-        public Aluno MatriculaNavigation { get; set; }
+        public Usuario Aluno { get; set; }
         public VagaRequisicao VagaRequisicao { get; set; }
         public ICollection<HorarioAtendimento> HorarioAtendimento { get; set; }
         public ICollection<InscricaoAceitacaoMonitoria> InscricaoAceitacaoMonitoria { get; set; }

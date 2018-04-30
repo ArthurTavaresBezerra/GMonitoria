@@ -13,21 +13,24 @@ namespace GMonitoria.Infrastructure.Data.Contexts
 {
     public partial class GMonitoriaContext : DbContext, IDesignTimeDbContextFactory<GMonitoriaContext>
     {
-        public virtual DbSet<GMonitoria.Domain.Entities.Aluno> Aluno{ get; set; }
         public virtual DbSet<Domain.Entities.ComponenteCurricular> ComponenteCurricular { get; set; }
-        public virtual DbSet<Domain.Entities.Coordenador> Coordenador { get; set; }
         public virtual DbSet<Domain.Entities.Curso> Curso { get; set; }
         public virtual DbSet<Domain.Entities.HorarioAtendimento> HorarioAtendimento { get; set; }
         public virtual DbSet<Domain.Entities.Inscricao> Inscricao { get; set; }
         public virtual DbSet<Domain.Entities.InscricaoAceitacaoMonitoria> InscricaoAceitacaoMonitoria { get; set; }
         public virtual DbSet<Domain.Entities.InscricaoProva> InscricaoProva { get; set; }
-        public virtual DbSet<Domain.Entities.InscricaoResultado> InscricaoResultado { get; set; } 
+        public virtual DbSet<Domain.Entities.InscricaoResultado> InscricaoResultado { get; set; }
+        public virtual DbSet<Domain.Entities.Papel> Papel { get; set; }
         public virtual DbSet<Domain.Entities.ProcessoSeletivo> ProcessoSeletivo { get; set; }
         public virtual DbSet<Domain.Entities.ProcessoSeletivoCurso> ProcessoSeletivoCurso { get; set; }
-        public virtual DbSet<Domain.Entities.Professor> Professor { get; set; }
         public virtual DbSet<Domain.Entities.Prova> Prova { get; set; }
+        public virtual DbSet<Domain.Entities.Usuario> Usuario { get; set; }
+        public virtual DbSet<Domain.Entities.UsuarioPapel> UsuarioPapel { get; set; }
         public virtual DbSet<Domain.Entities.Vaga> Vaga { get; set; }
         public virtual DbSet<Domain.Entities.VagaRequisicao> VagaRequisicao { get; set; }
+        public virtual DbSet<Domain.Entities.VagaRequisicaoAprovacao> VagaRequisicaoAprovacao { get; set; }
+
+
 
         public string CurrentUserId { get; set; }
 
@@ -47,9 +50,7 @@ namespace GMonitoria.Infrastructure.Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AlunoMap());
             modelBuilder.ApplyConfiguration(new ComponenteCurricularMap());
-            modelBuilder.ApplyConfiguration(new CoordenadorMap());
             modelBuilder.ApplyConfiguration(new CursoMap());
             modelBuilder.ApplyConfiguration(new HorarioAtendimentoMap());
             modelBuilder.ApplyConfiguration(new InscricaoMap());
@@ -58,10 +59,13 @@ namespace GMonitoria.Infrastructure.Data.Contexts
             modelBuilder.ApplyConfiguration(new InscricaoResultadoMap());
             modelBuilder.ApplyConfiguration(new ProcessoSeletivoMap());
             modelBuilder.ApplyConfiguration(new ProcessoSeletivoCursoMap());
-            modelBuilder.ApplyConfiguration(new ProfessorMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new PapelMap());
+            modelBuilder.ApplyConfiguration(new UsuarioPapelMap());
             modelBuilder.ApplyConfiguration(new ProvaMap());
             modelBuilder.ApplyConfiguration(new VagaMap());
             modelBuilder.ApplyConfiguration(new VagaRequisicaoMap());
+            modelBuilder.ApplyConfiguration(new VagaRequisicaoAprovacaoMap());
 
             base.OnModelCreating(modelBuilder);
         }

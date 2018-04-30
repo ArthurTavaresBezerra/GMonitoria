@@ -8,30 +8,12 @@ using System.Text;
 
 namespace GMonitoria.Infrastructure.Data.Configuration
 {
-    
-    public class AlunoMap : EntityTypeConfiguration<Aluno>
-    {
-        public override void ConfigureEntity(EntityTypeBuilder<Aluno> entity)
-        {
-            entity.HasKey(e => e.Matricula);
 
-            entity.ToTable("ALUNO");
-
-            entity.Property(e => e.Matricula)
-                .HasColumnName("MATRICULA")
-                .HasMaxLength(200);
-
-            entity.Property(e => e.Xaluno)
-                .IsRequired()
-                .HasColumnName("XALUNO")
-                .HasMaxLength(200);
-        }
-    }
     public class ComponenteCurricularMap : EntityTypeConfiguration<ComponenteCurricular>
     {
         public override void ConfigureEntity(EntityTypeBuilder<ComponenteCurricular> entity)
         {
-            entity.ToTable("COMPONENTE_CURRICULAR");
+            entity.ToTable("componente_curricular");
 
             entity.HasIndex(e => e.CursoId)
                 .HasName("FK_COMPONENTE_CURRICULAR_CURSO");
@@ -72,37 +54,6 @@ namespace GMonitoria.Infrastructure.Data.Configuration
         }
     }
 
-    public class CoordenadorMap : EntityTypeConfiguration<Coordenador>
-    {
-        public override void ConfigureEntity(EntityTypeBuilder<Coordenador> entity)
-        {
-            entity.ToTable("COORDENADOR");
-
-            entity.HasIndex(e => e.CursoId)
-                .HasName("FK_COORDENADOR_CURRICULAR_CURSO");
-
-            entity.Property(e => e.CoordenadorId)
-                .HasColumnName("COORDENADOR_ID")
-                .HasMaxLength(200);
-
-            entity.Property(e => e.CursoId)
-                .IsRequired()
-                .HasColumnName("CURSO_ID")
-                .HasMaxLength(200);
-
-            entity.Property(e => e.Xcoordenador)
-                .IsRequired()
-                .HasColumnName("XCOORDENADOR")
-                .HasMaxLength(200);
-
-            entity.HasOne(d => d.Curso)
-                .WithMany(p => p.Coordenador)
-                .HasForeignKey(d => d.CursoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_COORDENADOR_CURRICULAR_CURSO");
-        }
-    }
-
     public class CursoMap : EntityTypeConfiguration<Curso>
     {
         public override void ConfigureEntity(EntityTypeBuilder<Curso> entity)
@@ -119,7 +70,6 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasMaxLength(200);
         }
     }
-
 
     public class HorarioAtendimentoMap : EntityTypeConfiguration<HorarioAtendimento>
     {
@@ -152,9 +102,6 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasColumnName("INSCRICAO_ID")
                 .HasMaxLength(200);
 
-            entity.Property(e => e.Mes)
-                .HasColumnName("MES")
-                .HasColumnType("int(11)");
 
             entity.Property(e => e.Sala)
                 .IsRequired()
@@ -168,14 +115,14 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasConstraintName("FK_HORARIO_ATENDIMENTO_INSCRICAO");
         }
     }
-    
+
     public class InscricaoMap : EntityTypeConfiguration<Inscricao>
     {
         public override void ConfigureEntity(EntityTypeBuilder<Inscricao> entity)
         {
-            entity.ToTable("INSCRICAO");
+            entity.ToTable("inscricao");
 
-            entity.HasIndex(e => e.Matricula)
+            entity.HasIndex(e => e.AlunoId)
                 .HasName("FK_INSCRICAO_ALUNO");
 
             entity.HasIndex(e => e.VagaRequisicaoId)
@@ -185,14 +132,14 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasColumnName("INSCRICAO_ID")
                 .HasMaxLength(200);
 
+            entity.Property(e => e.AlunoId)
+                .IsRequired()
+                .HasColumnName("ALUNO_ID")
+                .HasMaxLength(200);
+
             entity.Property(e => e.Cpf)
                 .IsRequired()
                 .HasColumnName("CPF")
-                .HasMaxLength(200);
-
-            entity.Property(e => e.Matricula)
-                .IsRequired()
-                .HasColumnName("MATRICULA")
                 .HasMaxLength(200);
 
             entity.Property(e => e.Protocolo)
@@ -205,9 +152,9 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasColumnName("VAGA_REQUISICAO_ID")
                 .HasMaxLength(200);
 
-            entity.HasOne(d => d.MatriculaNavigation)
+            entity.HasOne(d => d.Aluno)
                 .WithMany(p => p.Inscricao)
-                .HasForeignKey(d => d.Matricula)
+                .HasForeignKey(d => d.AlunoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_INSCRICAO_ALUNO");
 
@@ -219,12 +166,11 @@ namespace GMonitoria.Infrastructure.Data.Configuration
         }
     }
 
-     
     public class InscricaoAceitacaoMonitoriaMap : EntityTypeConfiguration<InscricaoAceitacaoMonitoria>
     {
         public override void ConfigureEntity(EntityTypeBuilder<InscricaoAceitacaoMonitoria> entity)
         {
-            entity.ToTable("INSCRICAO_ACEITACAO_MONITORIA");
+            entity.ToTable("inscricao_aceitacao_monitoria");
 
             entity.HasIndex(e => e.InscricaoId)
                 .HasName("FK_INSCRICAO_ACEITACAO_MONITORIA_INSCRICAO");
@@ -264,7 +210,7 @@ namespace GMonitoria.Infrastructure.Data.Configuration
     {
         public override void ConfigureEntity(EntityTypeBuilder<InscricaoProva> entity)
         {
-            entity.ToTable("INSCRICAO_PROVA");
+            entity.ToTable("inscricao_prova");
 
             entity.HasIndex(e => e.InscricaoId)
                 .HasName("FK_INSCRICAO_PROVA_INSCRICAO");
@@ -306,7 +252,7 @@ namespace GMonitoria.Infrastructure.Data.Configuration
     {
         public override void ConfigureEntity(EntityTypeBuilder<InscricaoResultado> entity)
         {
-            entity.ToTable("INSCRICAO_RESULTADO");
+            entity.ToTable("inscricao_resultado");
 
             entity.HasIndex(e => e.InscricaoId)
                 .HasName("FK_INSCRICAO_RESULTADO_INSCRICAO");
@@ -332,11 +278,28 @@ namespace GMonitoria.Infrastructure.Data.Configuration
         }
     }
 
+    public class PapelMap : EntityTypeConfiguration<Papel>
+    {
+        public override void ConfigureEntity(EntityTypeBuilder<Papel> entity)
+        {
+            entity.ToTable("papel");
+
+            entity.Property(e => e.PapelId)
+                .HasColumnName("PAPEL_ID")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.Xpapel)
+                .IsRequired()
+                .HasColumnName("XPAPEL")
+                .HasMaxLength(200);
+        }
+    }
+
     public class ProcessoSeletivoMap : EntityTypeConfiguration<ProcessoSeletivo>
     {
         public override void ConfigureEntity(EntityTypeBuilder<ProcessoSeletivo> entity)
         {
-            entity.ToTable("PROCESSO_SELETIVO");
+            entity.ToTable("processo_seletivo");
 
             entity.Property(e => e.ProcessoSeletivoId)
                 .HasColumnName("PROCESSO_SELETIVO_ID")
@@ -365,7 +328,7 @@ namespace GMonitoria.Infrastructure.Data.Configuration
     {
         public override void ConfigureEntity(EntityTypeBuilder<ProcessoSeletivoCurso> entity)
         {
-            entity.ToTable("PROCESSO_SELETIVO_CURSO");
+            entity.ToTable("processo_seletivo_curso");
 
             entity.HasIndex(e => e.CursoId)
                 .HasName("FK_PROCESSO_SELETIVO_CURSO_CURSO");
@@ -387,11 +350,6 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasColumnName("PROCESSO_SELETIVO_ID")
                 .HasMaxLength(200);
 
-            entity.Property(e => e.VagarRequisicaoId)
-                .IsRequired()
-                .HasColumnName("VAGAR_REQUISICAO_ID")
-                .HasMaxLength(200);
-
             entity.HasOne(d => d.Curso)
                 .WithMany(p => p.ProcessoSeletivoCurso)
                 .HasForeignKey(d => d.CursoId)
@@ -406,28 +364,12 @@ namespace GMonitoria.Infrastructure.Data.Configuration
         }
     }
 
-    public class ProfessorMap : EntityTypeConfiguration<Professor>
-    {
-        public override void ConfigureEntity(EntityTypeBuilder<Professor> entity)
-        {
-            entity.ToTable("PROFESSOR");
-
-            entity.Property(e => e.ProfessorId)
-                .HasColumnName("PROFESSOR_ID")
-                .HasMaxLength(200);
-
-            entity.Property(e => e.Xprofessor)
-                .IsRequired()
-                .HasColumnName("XPROFESSOR")
-                .HasMaxLength(200);
-        }
-    }
 
     public class ProvaMap : EntityTypeConfiguration<Prova>
     {
         public override void ConfigureEntity(EntityTypeBuilder<Prova> entity)
         {
-            entity.ToTable("PROVA");
+            entity.ToTable("prova");
 
             entity.HasIndex(e => e.VagaRequisicaoId)
                 .HasName("FK_PROVA_VAGA_REQUISICAO");
@@ -470,11 +412,92 @@ namespace GMonitoria.Infrastructure.Data.Configuration
         }
     }
 
+    public class UsuarioMap : EntityTypeConfiguration<Usuario>
+    {
+        public override void ConfigureEntity(EntityTypeBuilder<Usuario> entity)
+        {
+            entity.ToTable("usuario");
+
+            entity.Property(e => e.UsuarioId)
+                .HasColumnName("USUARIO_ID")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.Matricula)
+                .IsRequired()
+                .HasColumnName("MATRICULA")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.Senha)
+                .IsRequired()
+                .HasColumnName("SENHA")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.Xusuario)
+                .IsRequired()
+                .HasColumnName("XUSUARIO")
+                .HasMaxLength(200);
+        }
+    }
+
+    public class UsuarioPapelMap : EntityTypeConfiguration<UsuarioPapel>
+    {
+        public override void ConfigureEntity(EntityTypeBuilder<UsuarioPapel> entity)
+        {
+            entity.ToTable("usuario_papel");
+
+            entity.HasIndex(e => e.CursoId)
+                .HasName("FK_USUARIO_PAPEL_CURSO");
+
+            entity.HasIndex(e => e.PapelId)
+                .HasName("FK_USUARIO_PAPEL_PAPEL");
+
+            entity.HasIndex(e => e.UsuarioId)
+                .HasName("FK_USUARIO_PAPEL_USUARIO");
+
+            entity.Property(e => e.UsuarioPapelId)
+                .HasColumnName("USUARIO_PAPEL_ID")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.CursoId)
+                .IsRequired()
+                .HasColumnName("CURSO_ID")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.PapelId)
+                .IsRequired()
+                .HasColumnName("PAPEL_ID")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.UsuarioId)
+                .IsRequired()
+                .HasColumnName("USUARIO_ID")
+                .HasMaxLength(200);
+
+            entity.HasOne(d => d.Curso)
+                .WithMany(p => p.UsuarioPapel)
+                .HasForeignKey(d => d.CursoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_USUARIO_PAPEL_CURSO");
+
+            entity.HasOne(d => d.Papel)
+                .WithMany(p => p.UsuarioPapel)
+                .HasForeignKey(d => d.PapelId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_USUARIO_PAPEL_PAPEL");
+
+            entity.HasOne(d => d.Usuario)
+                .WithMany(p => p.UsuarioPapel)
+                .HasForeignKey(d => d.UsuarioId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_USUARIO_PAPEL_USUARIO");
+        }
+    }
+
     public class VagaMap : EntityTypeConfiguration<Vaga>
     {
         public override void ConfigureEntity(EntityTypeBuilder<Vaga> entity)
         {
-            entity.ToTable("VAGA");
+            entity.ToTable("vaga");
 
             entity.HasIndex(e => e.VagaRequisicaoId)
                 .HasName("FK_VAGA_VAGA_REQUISICAO");
@@ -508,7 +531,7 @@ namespace GMonitoria.Infrastructure.Data.Configuration
     {
         public override void ConfigureEntity(EntityTypeBuilder<VagaRequisicao> entity)
         {
-            entity.ToTable("VAGA_REQUISICAO");
+            entity.ToTable("vaga_requisicao");
 
             entity.HasIndex(e => e.ComponenteCurricularId)
                 .HasName("FK_VAGA_REQUISICAO_COMPONENTE_CURRICULAR");
@@ -523,10 +546,6 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasColumnName("VAGA_REQUISICAO_ID")
                 .HasMaxLength(200);
 
-            entity.Property(e => e.Aceitacao)
-                .HasColumnName("ACEITACAO")
-                .HasColumnType("bit(1)");
-
             entity.Property(e => e.ComponenteCurricularId)
                 .IsRequired()
                 .HasColumnName("COMPONENTE_CURRICULAR_ID")
@@ -537,10 +556,6 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasColumnName("PROCESSO_SELETIVO_CURSO_ID")
                 .HasMaxLength(200);
 
-            entity.Property(e => e.ProcessoSeletivoSeletivoCursoId)
-                .HasColumnName("PROCESSO_SELETIVO_SELETIVO_CURSO_ID")
-                .HasColumnType("int(11)");
-
             entity.Property(e => e.ProfessorId)
                 .IsRequired()
                 .HasColumnName("PROFESSOR_ID")
@@ -548,14 +563,6 @@ namespace GMonitoria.Infrastructure.Data.Configuration
 
             entity.Property(e => e.Quantidade)
                 .HasColumnName("QUANTIDADE")
-                .HasColumnType("int(11)");
-
-            entity.Property(e => e.QuantidadeAceita)
-                .HasColumnName("QUANTIDADE_ACEITA")
-                .HasColumnType("int(11)");
-
-            entity.Property(e => e.QuantidadeBolsa)
-                .HasColumnName("QUANTIDADE_BOLSA")
                 .HasColumnType("int(11)");
 
             entity.HasOne(d => d.ComponenteCurricular)
@@ -577,7 +584,58 @@ namespace GMonitoria.Infrastructure.Data.Configuration
                 .HasConstraintName("FK_VAGA_REQUISICAO_PROFESSOR");
         }
     }
-} 
+
+
+    public class VagaRequisicaoAprovacaoMap : EntityTypeConfiguration<VagaRequisicaoAprovacao>
+    {
+        public override void ConfigureEntity(EntityTypeBuilder<VagaRequisicaoAprovacao> entity)
+        {
+            entity.HasKey(e => e.VagaRequisicaoId);
+
+            entity.ToTable("vaga_requisicao_aprovacao");
+
+            entity.HasIndex(e => e.CoordenadorId)
+                .HasName("FK_VAGA_REQUISICAO_APROVACAO_COORDENADOR");
+
+            entity.Property(e => e.VagaRequisicaoId)
+                .HasColumnName("VAGA_REQUISICAO_ID")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.CoordenadorId)
+                .IsRequired()
+                .HasColumnName("COORDENADOR_ID")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.IsAprovado)
+                .HasColumnName("IS_APROVADO")
+                .HasColumnType("bit(1)");
+
+            entity.Property(e => e.QuantidadeAprovada)
+                .HasColumnName("QUANTIDADE_APROVADA")
+                .HasColumnType("int(11)");
+
+            entity.Property(e => e.QuantidadeComBolsa)
+                .HasColumnName("QUANTIDADE_COM_BOLSA")
+                .HasColumnType("int(11)");
+
+            entity.Property(e => e.QuantidadeSemBolsa)
+                .HasColumnName("QUANTIDADE_SEM_BOLSA")
+                .HasColumnType("int(11)");
+
+            entity.HasOne(d => d.Coordenador)
+                .WithMany(p => p.VagaRequisicaoAprovacao)
+                .HasForeignKey(d => d.CoordenadorId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_VAGA_REQUISICAO_APROVACAO_COORDENADOR");
+
+            entity.HasOne(d => d.VagaRequisicao)
+                .WithOne(p => p.VagaRequisicaoAprovacao)
+                .HasForeignKey<VagaRequisicaoAprovacao>(d => d.VagaRequisicaoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_VAGA_REQUISICAO_APROVACAO_VAGA_REQUISICAO");
+        }
+    }
+}
 
 /*
 builder.Property(c => c.departament_id).HasMaxLength(200).HasColumnType("varchar");

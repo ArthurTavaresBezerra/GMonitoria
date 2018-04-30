@@ -16,7 +16,7 @@ namespace GMonitoria.Domain.Entities
         public string ProfessorId { get; set; }
 
         public Curso Curso { get; set; }
-        public Professor Professor { get; set; }
+        public Usuario Professor { get; set; }
         public ICollection<VagaRequisicao> VagaRequisicao { get; set; }
     }
 }

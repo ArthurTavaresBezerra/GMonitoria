@@ -10,7 +10,7 @@ namespace GMonitoria.Domain.Entities
         public string DiaDaSemana { get; set; }
         public DateTime HoraInicio { get; set; }
         public DateTime HoraFim { get; set; }
-        public int Mes { get; set; }
+        public int DataAlteracao { get; set; }
         public string Sala { get; set; }
 
         public Inscricao Inscricao { get; set; }

@@ -18,11 +18,6 @@ namespace GMonitoria.Infrastructure.Data.Migrations
 
         public void Seed()
         {
-            if (!_context.Aluno.Any())
-            {
-                _context.AddRange(Alunos);
-                _context.SaveChanges();
-            }
 
             if (!_context.Curso.Any())
             {
@@ -30,17 +25,24 @@ namespace GMonitoria.Infrastructure.Data.Migrations
                 _context.SaveChanges();
             }
 
-            if (!_context.Coordenador.Any())
-            {
-                _context.AddRange(Coordenadores);
-                _context.SaveChanges();
-            }
 
-            if (!_context.Professor.Any())
-            {
-                _context.AddRange(Professores);
-                _context.SaveChanges();
-            }
+            //if (!_context.Aluno.Any())
+            //{
+            //    _context.AddRange(Alunos);
+            //    _context.SaveChanges();
+            //}
+
+            //if (!_context.Coordenador.Any())
+            //{
+            //    _context.AddRange(Coordenadores);
+            //    _context.SaveChanges();
+            //}
+
+            //if (!_context.Professor.Any())
+            //{
+            //    _context.AddRange(Professores);
+            //    _context.SaveChanges();
+            //}
 
             if (!_context.ComponenteCurricular.Any())
             {
@@ -57,14 +59,14 @@ namespace GMonitoria.Infrastructure.Data.Migrations
         }
          
          
-        List<Aluno> Alunos = new List<Aluno>
-        {
-            new Aluno() { Matricula = "1", Xaluno = "Aluno1"} ,
-            new Aluno() { Matricula = "2", Xaluno = "Aluno2"} ,
-            new Aluno() { Matricula = "3", Xaluno = "Aluno3"} ,
-            new Aluno() { Matricula = "4", Xaluno = "Aluno4"} ,
-            new Aluno() { Matricula = "5", Xaluno = "Aluno5"}
-        };
+        //List<Aluno> Alunos = new List<Aluno>
+        //{
+        //    new Aluno() { Matricula = "1", Xaluno = "Aluno1"} ,
+        //    new Aluno() { Matricula = "2", Xaluno = "Aluno2"} ,
+        //    new Aluno() { Matricula = "3", Xaluno = "Aluno3"} ,
+        //    new Aluno() { Matricula = "4", Xaluno = "Aluno4"} ,
+        //    new Aluno() { Matricula = "5", Xaluno = "Aluno5"}
+        //};
 
         List<Curso> Cursos = new List<Curso>
         {
@@ -73,21 +75,21 @@ namespace GMonitoria.Infrastructure.Data.Migrations
             new Curso() { CursoId = "3",  Xcurso = "Medicina"}
         }; 
 
-        List<Coordenador> Coordenadores = new List<Coordenador>
-        {
-            new Coordenador() { CoordenadorId = "1", Xcoordenador = "Coordenador1", CursoId = "1"} ,
-            new Coordenador() { CoordenadorId = "2", Xcoordenador = "Coordenador2", CursoId = "2"} ,
-            new Coordenador() { CoordenadorId = "3", Xcoordenador = "Coordenador3", CursoId = "3"}  
-        };
+        //List<Coordenador> Coordenadores = new List<Coordenador>
+        //{
+        //    new Coordenador() { CoordenadorId = "1", Xcoordenador = "Coordenador1", CursoId = "1"} ,
+        //    new Coordenador() { CoordenadorId = "2", Xcoordenador = "Coordenador2", CursoId = "2"} ,
+        //    new Coordenador() { CoordenadorId = "3", Xcoordenador = "Coordenador3", CursoId = "3"}  
+        //};
 
-        List<Professor> Professores = new List<Professor>
-        {
-            new Professor() { ProfessorId = "1", Xprofessor = "Professor1"} ,
-            new Professor() { ProfessorId = "2", Xprofessor = "Professor2"} ,
-            new Professor() { ProfessorId = "3", Xprofessor = "Professor3"} ,
-            new Professor() { ProfessorId = "4", Xprofessor = "Professor4"} ,
-            new Professor() { ProfessorId = "5", Xprofessor = "Professor5"}
-        };
+        //List<Professor> Professores = new List<Professor>
+        //{
+        //    new Professor() { ProfessorId = "1", Xprofessor = "Professor1"} ,
+        //    new Professor() { ProfessorId = "2", Xprofessor = "Professor2"} ,
+        //    new Professor() { ProfessorId = "3", Xprofessor = "Professor3"} ,
+        //    new Professor() { ProfessorId = "4", Xprofessor = "Professor4"} ,
+        //    new Professor() { ProfessorId = "5", Xprofessor = "Professor5"}
+        //};
          
         List<ComponenteCurricular> ComponenteCurriculares = new List<ComponenteCurricular>
         {
