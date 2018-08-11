@@ -1,6 +1,7 @@
-﻿################################################################################
+﻿   git help -a | grep credential
+    ################################################################################
 # Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
-################################################################################
+ ################################################################################
 
 /GMonitoria.WebAspnetMvc/obj
 /GMonitoria.WebAspnetMvc/bin/Debug/netcoreapp2.0
